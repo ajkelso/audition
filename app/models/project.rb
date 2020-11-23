@@ -4,4 +4,6 @@ class Project < ApplicationRecord
     has_many :auditions, dependent: :destroy
 
     validates_presence_of :title, :medium
+
+    scope :get_seeking, -> {where('seeking = ?', true)}
 end
