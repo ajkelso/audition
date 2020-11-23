@@ -1,0 +1,2 @@
+class CastingDirectorsController < ApplicationController
+end

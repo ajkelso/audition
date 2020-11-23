@@ -1,0 +1,2 @@
+class CastingDirector < ApplicationRecord
+end
