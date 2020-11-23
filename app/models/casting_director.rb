@@ -4,4 +4,7 @@ class CastingDirector < ApplicationRecord
     has_many :actors, through: :auditions
     has_many :directors, through: :projects
     has_secure_password
+
+    validates_presence_of :name, :email
+    validates_uniqueness_of :name, :email
 end
