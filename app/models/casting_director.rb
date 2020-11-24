@@ -7,4 +7,5 @@ class CastingDirector < ApplicationRecord
 
     validates_presence_of :name, :email
     validates_uniqueness_of :name, :email
+    validates :password, confirmation: { case_sensitive: true }
 end
