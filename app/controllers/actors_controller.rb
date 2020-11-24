@@ -13,15 +13,13 @@ class ActorsController < ApplicationController
     end
 
     def create
-        
-
         @actor = Actor.new(actor_params)
         if @actor.save
             session[:actor_id] = actor.id 
             redirect_to actor_path(actor)
         else
-            byebug
-            render 'new'
+            flash[:errors] = @actor.errors.full_messages
+            redirect_to new_actor_path
         end
     end
 

@@ -1,13 +1,15 @@
-    <% if @actor.errors.any?%>
-        <div id="errors">
-            <ul>
-            <% @actor.errors.full_messages.each do |message|%>
-                <li><%= message %></li>
-            <% end %>
-            </ul>
-        </div>
-    <% end %>
+
+<% if flash[:errors]%>
+    <div id="errors">
+        <ul>
+        <% flash[:errors].each do |message|%>
+            <li><%= message %></li>
+        <% end %>
+        </ul>
+    </div>
+<% end %>
 <%= form_with model: @actor do |f|%>
+    
     <div class="form-group">
         <%= f.label :name, "Name:" %>
         <%= f.text_field :name %>
