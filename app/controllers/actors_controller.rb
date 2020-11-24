@@ -6,6 +6,7 @@ class ActorsController < ApplicationController
     end
     
     def show
+        redirect_to actors_path unless @actor
     end
 
     def new
@@ -16,7 +17,7 @@ class ActorsController < ApplicationController
         @actor = Actor.new(actor_params)
         if @actor.save
             session[:actor_id] = actor.id 
-            redirect_to actor_path(actor)
+            redirect_to actor_path(@actor)
         else
             flash[:errors] = @actor.errors.full_messages
             redirect_to new_actor_path
@@ -38,7 +39,7 @@ class ActorsController < ApplicationController
     private
 
     def find_actor
-        @actor = Actor.find_by(params[:id])
+        @actor = Actor.find_by(id: params[:id])
     end
 
     def actor_params
