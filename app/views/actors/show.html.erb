@@ -3,8 +3,10 @@
     <p><strong>Email:</strong> <%= @actor.email %></p>
     <p><strong>Phone Number:</strong>  <%= @actor.phone_number %></p>
 </div>
-<div class= "show_link"></div>
+<div class= "link"></div>
     <% if current_user == @actor %>
         <%= link_to  "Edit", edit_actor_path %>
     <% end %>
+    <%= link_to  "All Actors", actors_path %>
 </div>
+

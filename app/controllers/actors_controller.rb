@@ -29,12 +29,13 @@ class ActorsController < ApplicationController
     end
 
     def update
-    
+        if @actor.update(actor_params)
+            redirect_to actor_path(@actor)
+        else
+            flash.now[:errors] = @actor.errors.full_messages
+            render :edit
+        end
     end
-
-
-
-
 
     private
 
