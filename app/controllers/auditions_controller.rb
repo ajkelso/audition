@@ -12,6 +12,25 @@ class AuditionsController < ApplicationController
         end
     end
 
+    def create
+    
+        @audition = Audition.new(audition_params)
+        if @audition.save
+            redirect_to audition_path(@audition)
+        else
+            flash.now[:errors] = @audition.errors.full_messages
+            render :new
+        end
+
+    
+    end
+
+
+    private
+
+    def audition_params
+        params.require(:audition).permit(:actor_id, :project_id, :location, :time)
+    end
     
 
 end
