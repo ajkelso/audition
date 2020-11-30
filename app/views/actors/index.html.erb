@@ -1,3 +1,10 @@
+<% if flash[:error]%>
+    <div id="errors">
+        <%= flash[:error] %>
+    </div>
+<% end %>
+
+
 <div class="index">
     <ul>
     <% @actors.each do |actor|%>

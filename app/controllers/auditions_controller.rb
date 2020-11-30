@@ -1,11 +1,11 @@
 class AuditionsController < ApplicationController
-
+    before_action :find_audition, only: [:show, :edit, :update, :destroy]
     def new
         if params[:actor_id] && !Actor.exists?(params[:actor_id])
-            flash[:errors] = "Actor not found."
+                flash[:error] = "Actor not found."
             redirect_to actors_path
         elsif params[:project_id] && !Project.exists?(params[:project_id])
-            flash[:errors] = "Project not found."
+            flash[:error] = "Project not found."
             redirect_to projects_path
         else  
             @audition = Audition.new(actor_id: params[:actor_id], project_id: params[:project_id])
@@ -13,7 +13,6 @@ class AuditionsController < ApplicationController
     end
 
     def create
-    
         @audition = Audition.new(audition_params)
         if @audition.save
             redirect_to audition_path(@audition)
@@ -21,8 +20,6 @@ class AuditionsController < ApplicationController
             flash.now[:errors] = @audition.errors.full_messages
             render :new
         end
-
-    
     end
 
 
@@ -30,6 +27,10 @@ class AuditionsController < ApplicationController
 
     def audition_params
         params.require(:audition).permit(:actor_id, :project_id, :location, :time)
+    end
+
+    def find_audition
+        @audition = Audition.find_by(id: params[:id])
     end
     
 

@@ -9,10 +9,7 @@
 <% end %>
 
 <%=form_with model: @audition do |f|%>
-    <% if @audition.actor%>
-        <h3>Actor: <%=@audition.actor.name %></h3>
-    <% end %>
-    <%= actor_id_field(@audition)%>
+    <%= actor_id_field(@audition)%> <br>
     <%= project_id_field(@audition)%>
     
     <div class="form-group">
