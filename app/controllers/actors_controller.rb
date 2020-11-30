@@ -1,4 +1,5 @@
 class ActorsController < ApplicationController
+    skip_before_action :verified_user, only: [:new, :create]
     before_action :find_actor, only: [:show, :edit, :update]
 
     def index

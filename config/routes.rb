@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'static#home'
   resources :directors, exclude: [:destroy]
   resources :casting_directors, exclude: [:destroy]
   resources :actors, exclude: [:destroy] do

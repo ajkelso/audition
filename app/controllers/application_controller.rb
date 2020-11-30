@@ -1,5 +1,18 @@
 class ApplicationController < ActionController::Base
+    before_action :verified_user
     helper_method :current_user
+
+
+    def verified_user
+        unless user_is_authenticated
+            flash[:error] = "Please Sign in or Sign up"
+            redirect_to '/'
+        end
+    end
+
+    def user_is_authenticated
+        !!current_user
+    end
 
     def current_user
         if session[:actor_id]
