@@ -15,7 +15,6 @@ class SessionsController < ApplicationController
 
     def destroy
         [:actor_id, :director_id, :castingdirector_id].each { |id| session.delete(id) } 
-        byebug
         redirect_to new_session_path
     end
     
