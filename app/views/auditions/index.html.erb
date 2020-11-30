@@ -1,0 +1,19 @@
+<% if flash[:error]%>
+    <div id="errors">
+        <%= flash[:error] %>
+    </div>
+<% end %>
+
+
+<div class="index">
+    <h1><%= @actor.name%>'s Auditions</h1>
+    
+    <ul>
+    <% @auditions.each do |audition|%>
+        <li><h3><strong>Project: </strong><%= link_to  audition.project.title, project_path(audition.project) %></h3>
+            <p><strong>Time: </strong><%=audition.time%></p>
+            <p><strong>Location: </strong><%=audition.location%></p>
+        </li>
+    <% end %>
+    </ul>
+</div>
