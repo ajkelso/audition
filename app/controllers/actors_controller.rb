@@ -2,7 +2,6 @@ class ActorsController < ApplicationController
     skip_before_action :verified_user, only: [:new, :create]
     before_action :find_actor, only: [:show, :edit, :update]
     before_action :allowed?, only: [:edit, :update]
-    helper_method :owner?
 
     def index
         @actors = Actor.all 
@@ -52,14 +51,4 @@ class ActorsController < ApplicationController
         params.require(:actor).permit(:name, :email, :phone_number, :password, :password_confirmation)
     end
 
-    def owner?
-        current_user == @actor
-    end
-
-    def allowed?
-        unless owner?
-            flash[:error] = "You do not have access."
-            redirect_to actors_path 
-        end
-    end
 end
