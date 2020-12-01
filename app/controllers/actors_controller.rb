@@ -1,6 +1,7 @@
 class ActorsController < ApplicationController
     skip_before_action :verified_user, only: [:new, :create]
     before_action :find_actor, only: [:show, :edit, :update]
+    before_action :allowed?, only: [:edit, :update]
 
     def index
         @actors = Actor.all 
@@ -26,7 +27,6 @@ class ActorsController < ApplicationController
     end
 
     def edit
-    
     end
 
     def update
@@ -46,5 +46,16 @@ class ActorsController < ApplicationController
 
     def actor_params
         params.require(:actor).permit(:name, :email, :phone_number, :password, :password_confirmation)
+    end
+
+    def owner?
+        session[:actor_id] == @actor.id
+    end
+
+    def allowed?
+        unless owner?
+            flash[:error] = "You do not have access."
+            redirect_to actors_path 
+        end
     end
 end
