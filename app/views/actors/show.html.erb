@@ -4,7 +4,7 @@
     <p><strong>Phone Number:</strong>  <%= @actor.phone_number %></p>
 </div>
 <div class= "link"></div>
-    <% if current_user == @actor %>
+    <% if owner? %>
         <div class="owner_links">
         <%= link_to  "Edit Info", edit_actor_path %>
         <%= link_to  "View Auditions", actor_auditions_path(@actor) %>

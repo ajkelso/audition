@@ -2,13 +2,17 @@ class ActorsController < ApplicationController
     skip_before_action :verified_user, only: [:new, :create]
     before_action :find_actor, only: [:show, :edit, :update]
     before_action :allowed?, only: [:edit, :update]
+    helper_method :owner?
 
     def index
         @actors = Actor.all 
     end
     
     def show
-        redirect_to actors_path unless @actor
+        unless @actor
+            flash[:error] = "Actor not found."
+            redirect_to actors_path 
+        end
     end
 
     def new
@@ -49,7 +53,7 @@ class ActorsController < ApplicationController
     end
 
     def owner?
-        session[:actor_id] == @actor.id
+        current_user == @actor
     end
 
     def allowed?
