@@ -6,6 +6,10 @@ class ActorsController < ApplicationController
     def index
         @actors = Actor.all 
     end
+
+    def profile
+
+    end
     
     def show
         unless @actor
@@ -15,6 +19,7 @@ class ActorsController < ApplicationController
     end
 
     def new
+        signed_in?
         @actor = Actor.new
     end
 
@@ -40,6 +45,8 @@ class ActorsController < ApplicationController
             render :edit
         end
     end
+
+    
 
     private
 

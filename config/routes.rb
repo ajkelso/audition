@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   end
   resources :auditions
   resources :sessions, only: [:new, :create, :destroy]
+  get '/actors/profile/:id', to: 'actors#profile', as: 'actor_profile'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
