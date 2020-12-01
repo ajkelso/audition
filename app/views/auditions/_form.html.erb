@@ -1,13 +1,3 @@
-<% if flash[:errors]%>
-    <div id="errors">
-        <ul>
-        <% flash[:errors].each do |message|%>
-            <li><%= message %></li>
-        <% end %>
-        </ul>
-    </div>
-<% end %>
-
 <%=form_with model: @audition do |f|%>
     <%= actor_id_field(@audition)%> <br>
     <%= project_id_field(@audition)%>
