@@ -1,6 +1,6 @@
 class ActorsController < ApplicationController
     skip_before_action :verified_user, only: [:new, :create]
-    before_action :find_actor, only: [:show, :edit, :update]
+    before_action :find_actor, only: [:show, :edit, :update, :profile]
     before_action :allowed?, only: [:edit, :update]
 
     def index
@@ -8,6 +8,7 @@ class ActorsController < ApplicationController
     end
 
     def profile
+        
 
     end
     

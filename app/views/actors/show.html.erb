@@ -7,12 +7,8 @@
     <% if owner? %>
         <div class="owner_links">
         <%= link_to  "Edit Info", edit_actor_path %>
-        <%= link_to  "View Auditions", actor_auditions_path(@actor) %>
         </div>
     <% end %>
-
-    <%= link_to  "All Actors", actors_path %>
-    <%= link_to  "Log Out", session_path, method: :delete %>
     
 </div>
 
