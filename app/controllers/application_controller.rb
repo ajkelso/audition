@@ -17,11 +17,11 @@ class ApplicationController < ActionController::Base
 
     def current_user
         if session[:actor_id]
-            Actor.find_by(id: session[:actor_id])
+            @current_user ||= Actor.find_by(id: session[:actor_id])
         elsif session[:director_id]
-            Director.find_by(id: session[:director_id])
+            @current_user ||= Director.find_by(id: session[:director_id])
         elsif session[:casting_director_id]
-            CastingDirector.find_by(id: session[:casting_director_id])
+            @current_user ||= CastingDirector.find_by(id: session[:casting_director_id])
         end
     end
 
@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
     
     def allowed?
         unless owner?
-            flash[:error] = "You do not have access."
+            flash[:error] = "You do not have access to that page."
             redirect_back(fallback_location: root_path)
         end
     end

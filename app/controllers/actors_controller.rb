@@ -7,10 +7,7 @@ class ActorsController < ApplicationController
         @actors = Actor.all 
     end
 
-    def profile
-        
-
-    end
+    
     
     def show
         unless @actor
@@ -18,7 +15,11 @@ class ActorsController < ApplicationController
             redirect_to actors_path 
         end
     end
-
+    
+    def profile 
+        allowed?
+    end
+    
     def new
         signed_in?
         @actor = Actor.new
