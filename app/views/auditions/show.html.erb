@@ -4,9 +4,7 @@
     <p><strong>Location:</strong>  <%= @audition.location %></p>
     <p><strong>Time:</strong>  <%= @audition.time %></p>
 </div>
-<div class= "link"></div>
-    <% if current_user == @audition.actor %>
-        <%= link_to  "Edit", edit_audition_path(@audition) %>
-    <% end %>
-    <%= link_to  "Log Out", session_path, method: :delete %>
+<div class= "link">
+    <%= link_to  "Edit", edit_audition_path(@audition) %>
+    <%= link_to  "Delete", audition_path, method: 'delete' %>
 </div>

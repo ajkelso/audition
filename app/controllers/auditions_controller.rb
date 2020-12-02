@@ -26,6 +26,10 @@ class AuditionsController < ApplicationController
         @audition = Audition.new(actor_id: params[:actor_id], project_id: params[:project_id])
     end
 
+    def show
+    
+    end
+
     def create
         if actor_or_project_owner?
             @audition = Audition.new(audition_params)
@@ -39,6 +43,19 @@ class AuditionsController < ApplicationController
             flash[:error] = "You do not have access to create or modify that audition."
             redirect_to root_path
         end
+    end
+
+    def edit
+        
+    end
+
+    def update
+        
+    end
+
+    def destroy
+        @audition.delete
+        redirect_to actor_auditions_path(@audition.actor)
     end
 
     private

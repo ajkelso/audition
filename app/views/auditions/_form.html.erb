@@ -14,5 +14,8 @@
 
     <div class="actions">
         <%= f.submit %>
+        <% if @audition.id %>
+          <%= link_to  "Delete", audition_path, method: 'delete' %>
+        <% end %>
     </div>
 <% end %>
