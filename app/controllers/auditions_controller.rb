@@ -31,6 +31,7 @@ class AuditionsController < ApplicationController
             flash[:error] = "You do not have access to view that auditon."
             redirect_to root_path
         end
+        @note = @audition.notes.build
     end
 
     def create
@@ -56,6 +57,7 @@ class AuditionsController < ApplicationController
     end
 
     def update
+        byebug
         if @audition && actor_or_project_owner?
             @audition.update(audition_params)
             redirect_to actor_auditions_path(@audition.actor)
@@ -73,7 +75,7 @@ class AuditionsController < ApplicationController
     private
 
     def audition_params
-        params.require(:audition).permit(:actor_id, :project_id, :location, :time)
+        params.require(:audition).permit(:actor_id, :project_id, :location, :time, notes_attributes: [:content, :audition_id, :notable_id, :notable_type])
     end
 
     def find_audition

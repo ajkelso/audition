@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   resources :projects, exclude: [:destroy] do
     resources :auditions, shallow: true
   end
-  resources :auditions
+  resources :auditions do
+    resources :notes
+  end
   resources :sessions, only: [:new, :create]
   delete "/session", to: "sessions#destroy", as: 'sign_out'
 

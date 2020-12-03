@@ -4,6 +4,27 @@
     <p><strong>Location:</strong>  <%= @audition.location %></p>
     <p><strong>Time:</strong>  <%= @audition.time %></p>
 </div>
+
+<div class="note">
+    <%# <%= form_with url: audition_notes_path(@audition) do |f| %>
+        <%# <%= f.label :note, "Note:" %> %>
+        <%# <%= f.text_area "note[content]" %> %>
+        <%# <%= f.hidden_field "note[audition_id]", value: @audition.id %> %>
+        <%# <%= f.submit %> %>
+    <%# <% end %>  %>
+    <%= form_for @audition do |f|%>
+        <%=f.fields_for :notes do |note|%>
+            <%=note.label "Note" %>
+            <%=note.text_area :content%> 
+            <%=note.hidden_field :audition_id, value: @audition.id%>
+            <%=note.hidden_field :notable_id, value: current_user.id%>
+            <%=note.hidden_field :notable_type, value: current_user.class.to_s%>
+            <%=note.submit %>   
+        <% end %>
+    <% end %>
+
+</div>
+
 <div class= "link">
     <%= link_to  "Edit", edit_audition_path(@audition) %>
     <%= link_to  "Delete", audition_path, method: 'delete' %>
