@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
             session["#{params[:user_type].downcase}_id".to_sym] = @user.id
             redirect_to "/#{params[:user_type].downcase}s/#{@user.id}/profile"
         else
-            flash[:errors] = "Invalid email address or password"
+            flash[:error] = "Invalid email address or password"
             redirect_to new_session_path
         end
     end
