@@ -3,6 +3,7 @@ class Actor < ApplicationRecord
     has_many :projects, through: :auditions
     has_many :directors, through: :projects
     has_many :casting_directors, through: :projects
+    has_many :notes, as: :notable
     has_secure_password
 
     validates_presence_of :name, :email
