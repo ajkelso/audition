@@ -6,8 +6,6 @@ class ActorsController < ApplicationController
     def index
         @actors = Actor.all 
     end
-
-    
     
     def show
         unless @actor
