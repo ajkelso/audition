@@ -27,11 +27,14 @@ class AuditionsController < ApplicationController
     end
 
     def show
-    
+        unless actor_or_project_owner?
+            flash[:error] = "You do not have access to view that auditon."
+            redirect_to root_path
+        end
     end
 
     def create
-        if actor_or_project_owner?
+        if can_create?
             @audition = Audition.new(audition_params)
             if @audition.save
                 redirect_to audition_path(@audition)
@@ -46,11 +49,20 @@ class AuditionsController < ApplicationController
     end
 
     def edit
-        
+        unless actor_or_project_owner?
+            flash[:error] = "You do not have access to create or modify that audition."
+            redirect_to root_path
+        end
     end
 
     def update
-        
+        if @audition && actor_or_project_owner?
+            @audition.update(audition_params)
+            redirect_to actor_auditions_path(@audition.actor)
+        else
+            flash[:error] = "You do not have access to create or modify that audition."
+            redirect_to root_path
+        end
     end
 
     def destroy
@@ -81,10 +93,13 @@ class AuditionsController < ApplicationController
         end
     end
 
-    def actor_or_project_owner?
+    def actor_or_project_owner? 
+        current_user == (@audition.actor || @audition.project.director || @audition.project.casting_director) 
+    end
+    
+    def can_create?
         project = Project.find_by(params[:audition][:project_id])
         (params[:audition][:actor_id].to_i == session[:actor_id]) || current_user == (project.director || project.casting_director)
     end
-
 
 end
