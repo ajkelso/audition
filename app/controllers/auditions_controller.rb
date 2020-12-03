@@ -75,7 +75,7 @@ class AuditionsController < ApplicationController
     private
 
     def audition_params
-        params.require(:audition).permit(:actor_id, :project_id, :location, :time, notes_attributes: [:content, :audition_id, :notable_id, :notable_type])
+        params.require(:audition).permit(:actor_id, :project_id, :location, :time)
     end
 
     def find_audition

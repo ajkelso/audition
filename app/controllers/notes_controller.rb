@@ -4,13 +4,15 @@ class NotesController < ApplicationController
     end
 
     def create
-        @note = Note.create(note_params, notable: current_user)
+        byebug
+        @note = Note.create(note_params)
+        redirect_to audition_path(@note.audition)
     end
 
 
     private
 
     def note_params
-        params.require(:note).permit(:content, :audition_id)
+        params.require(:note).permit(:content, :audition_id, :notable_type, :notable_id)
     end
 end
