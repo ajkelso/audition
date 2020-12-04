@@ -15,5 +15,7 @@ Rails.application.routes.draw do
   delete "/session", to: "sessions#destroy", as: 'sign_out'
 
   get '/actors/:id/profile', to: 'actors#profile', as: 'actor_profile'
+
+  get '/auth/google_oauth2/callback', to: 'sessions#google_login'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
