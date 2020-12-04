@@ -2,7 +2,7 @@
     <p><strong>Actor Name:</strong> <%= @audition.actor.name %></p>
     <p><strong>Project:</strong> <%= @audition.project.title %></p>
     <p><strong>Location:</strong>  <%= @audition.location %></p>
-    <p><strong>Time:</strong>  <%= @audition.time.strftime("%A, %B%e %l:%M%P") %></p>
+    <p><strong>Time:</strong>  <%= @audition.time.strftime("%l:%M%P %A, %B%e") %></p>
 </div>
 <div class= "link">
     <%= link_to  "Edit Audition", edit_audition_path(@audition) %>
