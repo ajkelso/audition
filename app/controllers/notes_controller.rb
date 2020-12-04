@@ -1,16 +1,22 @@
 class NotesController < ApplicationController
-    def new
-        
-    end
+    before_action :find_note
 
     def create
-        byebug
         @note = Note.create(note_params)
         redirect_to audition_path(@note.audition)
     end
 
+    def destroy
+        @note.delete
+        redirect_to audition_path(params[:audition_id])
+    end
+
 
     private
+
+    def find_note
+        @note = Note.find_by(id: params[:id])
+    end
 
     def note_params
         params.require(:note).permit(:content, :audition_id, :notable_type, :notable_id)

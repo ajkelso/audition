@@ -9,7 +9,8 @@
     <% if @audition.notes && session[:actor_id] %>
         <ul>
         <% @audition.notes.select {|note| note.notable_type == "Actor"}.each do |n| %>
-            <li><%= n.content%></li>
+            <li><%= n.content%> <br>
+            <%= link_to  "Edit Note", edit_audition_note_path(@audition, n) %> <%= link_to  "Delete Note", audition_note_path(@audition, n), method: "delete" %></li>
         <% end %>
         </ul>  
     <% end %>
