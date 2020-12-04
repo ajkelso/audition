@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_03_182419) do
+ActiveRecord::Schema.define(version: 2020_12_04_030447) do
 
   create_table "actors", force: :cascade do |t|
     t.string "name"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_12_03_182419) do
 
   create_table "auditions", force: :cascade do |t|
     t.string "location"
-    t.string "time"
+    t.datetime "time"
     t.integer "actor_id"
     t.integer "project_id"
     t.datetime "created_at", precision: 6, null: false

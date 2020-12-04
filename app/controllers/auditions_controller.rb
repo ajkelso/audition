@@ -57,10 +57,10 @@ class AuditionsController < ApplicationController
     end
 
     def update
-        byebug
+
         if @audition && actor_or_project_owner?
             @audition.update(audition_params)
-            redirect_to actor_auditions_path(@audition.actor)
+            redirect_to audition_path(@audition)
         else
             flash[:error] = "You do not have access to create or modify that audition."
             redirect_to root_path
