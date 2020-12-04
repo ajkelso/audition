@@ -27,7 +27,6 @@ class AuditionsController < ApplicationController
     end
 
     def show
-        
         unless actor_or_project_owner?
             flash[:error] = "You do not have access to view that auditon."
             redirect_to root_path

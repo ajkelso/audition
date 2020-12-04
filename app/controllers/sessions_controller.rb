@@ -18,10 +18,11 @@ class SessionsController < ApplicationController
     end
 
     def signup
-        
+        signed_in?
     end
 
     def create_user
+        signed_in?
         @user = params[:user_type].constantize.new(session_params)
         if @user.save
             session["#{params[:user_type].downcase}_id".to_sym] = @user.id
