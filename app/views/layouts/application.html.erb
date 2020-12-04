@@ -13,9 +13,7 @@
     <nav>
       <% if !current_user %>
         <%= link_to  "Sign In", new_session_path %>
-        <%= link_to  "Actor Sign Up", new_actor_path %>
-        <%= link_to  "Director Sign Up", new_director_path %>
-        <%= link_to  "Casting Director Sign Up", new_casting_director_path %>
+        <%= link_to  "Sign Up", '/signup' %>
       <% end %>  
       <% if current_user %>
         <%= link_to "Actors", actors_path %>

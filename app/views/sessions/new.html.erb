@@ -1,3 +1,11 @@
+<%= form_with url: "/google_signup" do |f|%>
+    <%= f.label :type, "Sign in with Google as an:" %>
+    <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'CastingDirector']]))%>
+    <%= f.submit "Sign in with Google"%>
+<% end %>
+
+<div><p>Or: </p></div>
+
 <%= form_with(url: "/sessions", method: "post") do %>
     
     <div class="form-group">

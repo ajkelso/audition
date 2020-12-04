@@ -1,4 +1,4 @@
-<%= link_to  "Sign Up with Google", '/auth/google_oauth2' %>
+
 <%= form_with url: "/google_signup" do |f|%>
     <%= f.label :type, "Sign up with Google as an:" %>
     <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'CastingDirector']]))%>
