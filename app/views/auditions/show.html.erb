@@ -4,32 +4,44 @@
     <p><strong>Location:</strong>  <%= @audition.location %></p>
     <p><strong>Time:</strong>  <%= @audition.time %></p>
 </div>
-
-<div class="actor_notes">
-    <% if @audition.notes && session[:actor_id] %>
-        <ul>
-        <% @audition.notes.select {|note| note.notable_type == "Actor"}.each do |n| %>
-            <li><%= n.content%> <br>
-            <%= link_to  "Edit Note", edit_audition_note_path(@audition, n) %> <%= link_to  "Delete Note", audition_note_path(@audition, n), method: "delete" %></li>
-        <% end %>
-        </ul>  
-    <% end %>
-
-</div>
-
-<div class="note">
-    <%=form_with url: audition_notes_path(@audition) do |note|%>
-        <%=note.label "Notes: " %>
-        <%=note.text_area "note[content"%> 
-        <%=note.hidden_field "note[audition_id]", value: @audition.id%>
-        <%=note.hidden_field "note[notable_id]", value: current_user.id%>
-        <%=note.hidden_field "note[notable_type]", value: current_user.class.to_s%>
-        <%=note.submit "Add Note"%> <br>   
-    <% end %>
-
-</div>
-
 <div class= "link">
-    <%= link_to  "Edit", edit_audition_path(@audition) %>
-    <%= link_to  "Delete", audition_path, method: 'delete' %>
+    <%= link_to  "Edit Audition", edit_audition_path(@audition) %>
+    <%= link_to  "Delete Audition", audition_path, method: 'delete' %>
+</div>
+
+<div>
+    <% if @note.id %>
+        <%=form_with url: audition_note_path(@audition, @note), method: "patch" do |note|%>
+            <%=note.label "Notes: " %>
+            <%=note.text_area "note[content", value: @note.content%> 
+            <%=note.hidden_field "note[audition_id]", value: @audition.id%>
+            <%=note.hidden_field "note[notable_id]", value: current_user.id%>
+            <%=note.hidden_field "note[notable_type]", value: current_user.class.to_s%>
+            <%=note.submit "Update Note"%> <br>   
+        <% end %> 
+    <% else %>
+
+        <div class="actor_notes">
+            <% if @audition.notes && session[:actor_id] %>
+                <ul>
+                <% @audition.notes.select {|note| note.notable_type == "Actor"}.each do |n| %>
+                    <li><%= n.content%> <br>
+                    <%= link_to  "Edit Note", edit_audition_note_path(@audition, n) %> <%= link_to  "Delete Note", audition_note_path(@audition, n), method: "delete" %></li>
+                <% end %>
+                </ul>  
+            <% end %>
+
+        </div>
+
+        <div class="note">
+            <%=form_with url: audition_notes_path(@audition) do |note|%>
+                <%=note.label "Notes: " %>
+                <%=note.text_area "note[content"%> 
+                <%=note.hidden_field "note[audition_id]", value: @audition.id%>
+                <%=note.hidden_field "note[notable_id]", value: current_user.id%>
+                <%=note.hidden_field "note[notable_type]", value: current_user.class.to_s%>
+                <%=note.submit "Add Note"%> <br>   
+            <% end %>
+        </div>
+    <% end %>    
 </div>

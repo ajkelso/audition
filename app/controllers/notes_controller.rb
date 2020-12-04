@@ -11,6 +11,16 @@ class NotesController < ApplicationController
         redirect_to audition_path(params[:audition_id])
     end
 
+    def edit
+        @audition = Audition.find_by(id: params[:audition_id])
+        render "auditions/show"
+    end
+
+    def update
+        @note.update(note_params)
+        redirect_to audition_path(params[:audition_id])
+    end
+
 
     private
 
