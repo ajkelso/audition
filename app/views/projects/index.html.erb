@@ -1,15 +1,25 @@
 <% if @director || @casting_director %>
     <div>
         <h1>Your Projects</h1>
+        <ul>
+        <%@projects.each do |project|%>
+            <li><h3><%=project.title%>(<%=project.medium %>)</h3>
+            <p>Director: <%=project.director.name %></p>
+            <p>Casting Director: <%=project.casting_director.name%></p>
+            </li>
+        <% end %>
+        </ul>
         <div>
-            <ul>
-            <%@projects.each do |project|%>
-                <li><h3><%=project.title%>(<%=project.medium %>)</h3>
-                <p>Director: <%=project.director.name %></p>
-                <p>Casting Director: <%=project.casting_director.name%></p>
-                </li>
+        <p>Add a new Project:</p>
+            <%=form_with model: @project, url: director_projects_path(@director) do |proj|%>
+                <%=proj.label "Title" %>
+                <%=proj.text_field :title%> <br>
+                <%=proj.label :type, "Type"%>
+                <%=proj.text_field :medium %> <br>
+                <%=proj.label :casting, "Casting Director"%>
+                <%=proj.select :casting_director_id, options_from_collection_for_select(CastingDirector.all, :id, :name) %> <br>  
+                <%=proj.submit %> 
             <% end %>
-            </ul>
         </div>
     </div>
 
