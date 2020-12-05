@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   delete "/session", to: "sessions#destroy", as: 'sign_out'
 
   get '/actors/:id/profile', to: 'actors#profile', as: 'actor_profile'
+  get '/directors/:id/profile', to: 'directors#profile', as: 'director_profile'
 
   get '/auth/google_oauth2/callback', to: 'sessions#google_login'
   post '/google_signup', to: 'sessions#google_signup'
