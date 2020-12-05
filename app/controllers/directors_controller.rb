@@ -1,16 +1,25 @@
 class DirectorsController < ApplicationController
     skip_before_action :verified_user, only: [:new, :create]
-    before_action :find_director, only: [:show, :edit, :update]
+    before_action :find_director, only: [:show, :edit, :update, :profile]
+    before_action :allowed?, only: [:edit, :update]
 
     def index
         @directors = Director.all 
     end
     
     def show
-        redirect_to director_path unless @director
+        unless @director
+            flash[:error] = "Director not found."
+            redirect_to directors_path 
+        end
     end
-
+    
+    def profile 
+        allowed?
+    end
+    
     def new
+        signed_in?
         @director = Director.new
     end
 
@@ -26,16 +35,18 @@ class DirectorsController < ApplicationController
     end
 
     def edit
-    
     end
 
     def update
-    
+        if @director.update(director_params)
+            redirect_to director_path(@director)
+        else
+            flash.now[:errors] = @director.errors.full_messages
+            render :edit
+        end
     end
 
-
-
-
+    
 
     private
 
@@ -46,5 +57,5 @@ class DirectorsController < ApplicationController
     def director_params
         params.require(:director).permit(:name, :email, :phone_number, :password, :password_confirmation)
     end
-end
 
+end

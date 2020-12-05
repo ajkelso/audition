@@ -1,16 +1,25 @@
 class CastingDirectorsController < ApplicationController
     skip_before_action :verified_user, only: [:new, :create]
-    before_action :find_casting_director, only: [:show, :edit, :update]
+    before_action :find_casting_director, only: [:show, :edit, :update, :profile]
+    before_action :allowed?, only: [:edit, :update]
 
     def index
         @casting_directors = CastingDirector.all 
     end
     
     def show
-        redirect_to casting_director_path unless @casting_director
+        unless @casting_director
+            flash[:error] = "Casting Director not found."
+            redirect_to casting_directors_path 
+        end
     end
-
+    
+    def profile 
+        allowed?
+    end
+    
     def new
+        signed_in?
         @casting_director = CastingDirector.new
     end
 
@@ -26,12 +35,18 @@ class CastingDirectorsController < ApplicationController
     end
 
     def edit
-    
     end
 
     def update
-    
+        if @casting_director.update(casting_director_params)
+            redirect_to casting_director_path(@casting_director)
+        else
+            flash.now[:errors] = @casting_director.errors.full_messages
+            render :edit
+        end
     end
+
+    
 
     private
 
@@ -42,5 +57,5 @@ class CastingDirectorsController < ApplicationController
     def casting_director_params
         params.require(:casting_director).permit(:name, :email, :phone_number, :password, :password_confirmation)
     end
+
 end
-    
