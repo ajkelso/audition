@@ -11,7 +11,7 @@
         </ul>
         <div>
         <p>Add a new Project:</p>
-            <%=form_with model: @project, url: director_projects_path(@director) do |proj|%>
+            <%=form_with model: @project do |proj|%>
                 <%=proj.label "Title" %>
                 <%=proj.text_field :title%> <br>
                 <%=proj.label :type, "Type"%>
