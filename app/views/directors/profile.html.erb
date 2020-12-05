@@ -1,0 +1,11 @@
+<div>
+    <h1><%=@director.name%></h1>
+</div>
+
+<div>
+    <h3>You have <%=link_to pluralize(@director.projects.count, 'project'), director_projects_path(@director)%>. </h3>
+</div>
+
+<div>
+    <h3>You have tracked <%=link_to pluralize(@director.auditions.count, 'audition'), actor_auditions_path(@director)%>.</h3>
+</div>

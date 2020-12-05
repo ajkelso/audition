@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root 'static#home'
-  resources :directors, exclude: [:destroy]
-  resources :casting_directors, exclude: [:destroy]
+  resources :directors, exclude: [:destroy] do
+    resources :projects
+  end
+  resources :casting_directors, exclude: [:destroy] do
+    resources :projects
+  end
   resources :actors, exclude: [:destroy] do
     resources :auditions, shallow: true
   end

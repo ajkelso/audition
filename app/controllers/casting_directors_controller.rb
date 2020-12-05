@@ -57,5 +57,4 @@ class CastingDirectorsController < ApplicationController
     def casting_director_params
         params.require(:casting_director).permit(:name, :email, :phone_number, :password, :password_confirmation)
     end
-
 end
