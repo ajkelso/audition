@@ -1,13 +1,30 @@
-<div>
-    <h1>Projects Currently Casting</h1>
+<% if @director || @casting_director %>
     <div>
-        <ul>
-        <%@projects.each do |project|%>
-            <li><h3><%=project.title%>(<%=project.medium %>)</h3>
-            <p>Director: <%=project.director.name %></p>
-            <p>Casting Director: <%=project.casting_director.name%></p>
-            </li>
-        <% end %>
-        </ul>
+        <h1>Your Projects</h1>
+        <div>
+            <ul>
+            <%@projects.each do |project|%>
+                <li><h3><%=project.title%>(<%=project.medium %>)</h3>
+                <p>Director: <%=project.director.name %></p>
+                <p>Casting Director: <%=project.casting_director.name%></p>
+                </li>
+            <% end %>
+            </ul>
+        </div>
     </div>
-</div>
+
+<% else %>
+    <div>
+        <h1>Projects Currently Casting</h1>
+        <div>
+            <ul>
+            <%@projects.each do |project|%>
+                <li><h3><%=project.title%>(<%=project.medium %>)</h3>
+                <p>Director: <%=project.director.name %></p>
+                <p>Casting Director: <%=project.casting_director.name%></p>
+                </li>
+            <% end %>
+            </ul>
+        </div>
+    </div>
+<% end %>
