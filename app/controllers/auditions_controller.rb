@@ -57,7 +57,6 @@ class AuditionsController < ApplicationController
     end
 
     def update
-
         if @audition && actor_or_project_owner?
             @audition.update(audition_params)
             redirect_to audition_path(@audition)
