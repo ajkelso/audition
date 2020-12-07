@@ -12,6 +12,7 @@ class DirectorsController < ApplicationController
             flash[:error] = "Director not found."
             redirect_to directors_path 
         end
+        @projects = @director.projects unless @director.projects.empty?
     end
     
     def profile 

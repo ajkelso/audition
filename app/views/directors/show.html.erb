@@ -1,0 +1,24 @@
+<div class="show">
+    <h1><strong>Name:</strong> <%= @director.name %></h1>
+        <p><strong>Email:</strong> <%= @director.email %></p>
+    <% unless current_user_model == Actor %>
+        <p><strong>Phone Number:</strong>  <%= @director.phone_number %></p>
+    <% end %>
+        <p><strong>Current Projects:</strong></p>
+            <% if @projects %>
+                <ul>
+                <% @projects.each do |project|%>
+                    <li><%=link_to project.title, project_path(project) %></li>  
+                <% end %>
+                </ul>
+            <% else %>
+                <p>No projects to show</p>
+            <% end %>
+</div>
+<div class= "link"></div>
+    <% if owner? %>
+        <div class="owner_links">
+        <%= link_to  "Edit Info", edit_director_path(@director) %>
+        </div>
+    <% end %>
+</div>
