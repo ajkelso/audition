@@ -10,4 +10,10 @@
     <% end %>
     </ul>
     <p>* Indicates a Director for a Project in your tracked auditions</p>
+<% else %>
+    <%@directors.each do |d|%>
+        <ul>
+            <li><%= link_to  d.name, director_path(d) %></li>
+        </ul>
+    <% end %>
 <% end %>
