@@ -25,8 +25,19 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    def current_user_class
+        if session[:actor_id]
+            Actor
+        elsif session[:director_id]
+            Director
+        elsif session[:casting_director_id]
+            CastingDirector
+        end
+    end
+
+
     def owner?
-        current_user == @actor || @director || @casting_director
+        current_user == (@actor || @director || @casting_director || @user)
     end
     
     def allowed?

@@ -3,12 +3,28 @@ class AuditionsController < ApplicationController
     
     def index
         if params[:actor_id]
-            @actor = Actor.find_by(id: params[:actor_id])
+            @user = Actor.find_by(id: params[:actor_id])
             if owner?
-                @auditions = @actor.auditions
+                @auditions = @user.auditions
             else
                 flash[:error] = "You do not have access"
-                redirect_to actors_path
+                redirect_to actors_profile_path(@user)
+            end
+        elsif params[:director_id]
+            @user = Director.find_by(id: params[:director_id])
+            if owner?
+                @auditions = @user.auditions
+            else
+                flash[:error] = "You do not have access"
+                redirect_to director_profile_path(@user)
+            end
+        elsif params[:casting_director_id]
+            @user = CastingDirector.find_by(id: params[:casting_director_id])
+            if owner?
+                @auditions = @user.auditions
+            else
+                flash[:error] = "You do not have access"
+                redirect_to casting_director_profile_path(@user)
             end
         elsif params[:project_id]
             @project = Project.find_by(id: params[:project_id])
