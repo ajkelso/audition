@@ -22,12 +22,16 @@ class ProjectsController < ApplicationController
         if @project.update(project_params)
             redirect_to @project
         else
-            flash.now[:errors] = @project.errors.full_messages
-            render :edit
+            flash[:errors] = @project.errors.full_messages
+            redirect_to edit_project_path(@project)
         end
     end
 
-
+    def destroy
+        @project.delete 
+        redirect_to projects_index  
+    end
+    
     private
 
     def find_project

@@ -1,4 +1,4 @@
-<% if @director || @casting_director %>
+<% if (@director || @casting_director) %>
     <div>
         <h1>Your Projects</h1>
         <ul>
@@ -38,6 +38,9 @@
                 <li><h3><%=project.title%>(<%=project.medium %>)</h3>
                 <p>Director: <%=project.director.name %></p>
                 <p>Casting Director: <%=project.casting_director.name%></p>
+                <% if project_creative?(project) %>
+                    <%= link_to  "Edit", edit_project_path(project)%> <%= link_to  "Delete", project_path(project), method: "delete" %></p>
+                <% end %>
                 </li>
             <% end %>
             </ul>
