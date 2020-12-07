@@ -1,8 +1,8 @@
 <h1>Casting Directors</h1>
 <% if !creative? %>
     <ul>
-    <% @catsing_directors.each do |cd|%>
-        <li><%= link_to  cd.name, catsing_director_path(cd) %>
+    <% @casting_directors.each do |cd|%>
+        <li><%= link_to  cd.name, casting_director_path(cd) %>
         <% if current_user.casting_directors.include?(cd) %>
             *
         <% end %>

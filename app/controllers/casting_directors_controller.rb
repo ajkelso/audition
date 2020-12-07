@@ -12,6 +12,7 @@ class CastingDirectorsController < ApplicationController
             flash[:error] = "Casting Director not found."
             redirect_to casting_directors_path 
         end
+        @projects = @casting_director.projects unless @casting_director.projects.empty?
     end
     
     def profile 
