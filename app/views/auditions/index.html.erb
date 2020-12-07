@@ -10,7 +10,7 @@
     
     <ul>
     <% @auditions.each do |audition|%>
-        <li><h3><strong>Project: </strong><%= link_to  audition.project.title, audition_path(audition) %></h3>
+        <li><h3><%= link_to  audition.project.title, audition_path(audition) %></h3>
         </li>
     <% end %>
     </ul>
