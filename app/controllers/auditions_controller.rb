@@ -47,6 +47,7 @@ class AuditionsController < ApplicationController
             flash[:error] = "You do not have access to view that auditon."
             redirect_to root_path
         end
+        get_audition_notes
         @note = @audition.notes.build
     end
 
@@ -117,6 +118,12 @@ class AuditionsController < ApplicationController
     def can_create?
         project = Project.find_by(params[:audition][:project_id])
         (params[:audition][:actor_id].to_i == session[:actor_id]) || current_user == (project.director || project.casting_director)
+    end
+
+    def get_audition_notes
+        if @audition.notes
+            @notes = @audition.notes.select {|note| note.notable_type == current_user_model.to_s }
+        end
     end
 
 end
