@@ -6,6 +6,10 @@
             <li><h3><%=project.title%>(<%=project.medium %>)</h3>
             <p>Director: <%=project.director.name %></p>
             <p>Casting Director: <%=project.casting_director.name%></p>
+            <% if project.seeking %>
+                <p>*Currently Casting</p>
+            <% end %>
+            <p><%= link_to  "Edit", edit_project_path(project)%> <%= link_to  "Delete", project_path(project), method: "delete" %></p>
             </li>
         <% end %>
         </ul>
@@ -18,6 +22,8 @@
                 <%=proj.text_field :medium %> <br>
                 <%=proj.label :casting, "Casting Director"%>
                 <%=proj.select :casting_director_id, options_from_collection_for_select(CastingDirector.all, :id, :name) %> <br>  
+                <%=proj.label :seeking, "Currently Casting?"%>
+                <%=proj.check_box :seeking %>
                 <%=proj.submit %> 
             <% end %>
         </div>

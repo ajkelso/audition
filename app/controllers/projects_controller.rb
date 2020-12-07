@@ -1,6 +1,44 @@
 class ProjectsController < ApplicationController
-    
+    before_action :find_project, only: [:show, :edit, :update, :destroy]
     def index
+        get_projects
+    end
+
+    def create
+        @project = Project.new(project_params)
+        @project.director_id = current_user.id 
+        @project.save
+        redirect_to director_projects_path(current_user)
+    end
+
+    def show
+    
+    end
+
+    def edit
+    end
+
+    def update
+        if @project.update(project_params)
+            redirect_to @project
+        else
+            flash.now[:errors] = @project.errors.full_messages
+            render :edit
+        end
+    end
+
+
+    private
+
+    def find_project
+        @project = Project.find_by(id: params[:id])
+    end
+    
+    def project_params
+        params.require(:project).permit(:title, :medium, :director_id, :casting_director_id, :seeking)
+    end
+
+    def get_projects
         if params[:director_id]
             @director = Director.find_by(id: params[:director_id])
             if owner?
@@ -22,18 +60,6 @@ class ProjectsController < ApplicationController
             @projects = Project.get_seeking    
         end
     end
-
-    def create
-        @project = Project.new(project_params)
-        @project.director_id = current_user.id 
-        @project.save
-        redirect_to director_projects_path(current_user)
-    end
-
-    private
-
-    def project_params
-        params.require(:project).permit(:title, :medium, :director_id, :casting_director_id)
-    end
+        
 
 end
