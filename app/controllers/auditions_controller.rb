@@ -43,7 +43,6 @@ class AuditionsController < ApplicationController
     end
 
     def show
-        bye_bug
         unless actor_or_project_owner?
             flash[:error] = "You do not have access to view that auditon."
             redirect_to root_path
@@ -112,7 +111,7 @@ class AuditionsController < ApplicationController
     end
 
     def actor_or_project_owner? 
-        current_user == (@audition.actor || @audition.project.director || @audition.project.casting_director) 
+        current_user == @audition.actor || @audition.project.director || @audition.project.casting_director
     end
     
     def can_create?
