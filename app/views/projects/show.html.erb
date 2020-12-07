@@ -1,13 +1,12 @@
 <h1><%=@project.title %></h1>
-<ul>
-    <li>Director: <%=@project.director.name%></li>
-    <li>Casting Director: <%=@project.casting_director.name%></li>
-    <% if @project.seeking %>
-            <li>Currently Casting</li>
-        <% else %>
-            <li>Not Currently Casting</li>
-    <% end %>
-    <% if project_creative?(@project) %>
-      <%= link_to  "Edit", edit_project_path(@project)%> <%= link_to  "Delete", project_path(@project), method: "delete" %></p>
-    <% end %>
-</ul>
+
+  <p><strong>Director:</strong> <%=@project.director.name%></p>
+  <p><strong>Casting Director:</strong> <%=@project.casting_director.name%></p>
+  <% if @project.seeking %>
+          <strong>Currently Casting</strong>
+      <% else %>
+          <strong>Not Currently Casting</strong>
+  <% end %>
+  <% if project_creative?(@project) %>
+    <%= link_to  "Edit", edit_project_path(@project)%> <%= link_to  "Delete", project_path(@project), method: "delete" %></p>
+  <% end %>
