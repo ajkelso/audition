@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
     before_action :verified_user
     helper_method :current_user
     helper_method :owner?
+    helper_method :current_user_model
 
 
     def verified_user
@@ -25,7 +26,7 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    def current_user_class
+    def current_user_model
         if session[:actor_id]
             Actor
         elsif session[:director_id]

@@ -8,7 +8,7 @@ class AuditionsController < ApplicationController
                 @auditions = @user.auditions
             else
                 flash[:error] = "You do not have access"
-                redirect_to actors_profile_path(@user)
+                redirect_to actor_profile_path(@user)
             end
         elsif params[:director_id]
             @user = Director.find_by(id: params[:director_id])
@@ -43,6 +43,7 @@ class AuditionsController < ApplicationController
     end
 
     def show
+        bye_bug
         unless actor_or_project_owner?
             flash[:error] = "You do not have access to view that auditon."
             redirect_to root_path
