@@ -2,39 +2,7 @@ class AuditionsController < ApplicationController
     before_action :find_audition, only: [:show, :edit, :update, :destroy]
     
     def index
-        if params[:actor_id]
-            @user = Actor.find_by(id: params[:actor_id])
-            if owner?
-                @auditions = @user.auditions
-            else
-                flash[:error] = "You do not have access"
-                redirect_to actor_profile_path(@user)
-            end
-        elsif params[:director_id]
-            @user = Director.find_by(id: params[:director_id])
-            if owner?
-                @auditions = @user.auditions
-            else
-                flash[:error] = "You do not have access"
-                redirect_to director_profile_path(@user)
-            end
-        elsif params[:casting_director_id]
-            @user = CastingDirector.find_by(id: params[:casting_director_id])
-            if owner?
-                @auditions = @user.auditions
-            else
-                flash[:error] = "You do not have access"
-                redirect_to casting_director_profile_path(@user)
-            end
-        elsif params[:project_id]
-            @project = Project.find_by(id: params[:project_id])
-            if @project && current_user == @project.director || @project.casting_director
-                @auditions = @project.auditions 
-            else
-                flash[:error] = "You do not have access"
-                redirect_to projects_path
-            end
-        end
+        get_auditions_for_user
     end
     
     def new
@@ -123,6 +91,42 @@ class AuditionsController < ApplicationController
     def get_audition_notes
         if @audition.notes
             @notes = @audition.notes.select {|note| note.notable_type == current_user_model.to_s }
+        end
+    end
+
+    def get_auditions_for_user
+        if params[:actor_id]
+            @user = Actor.find_by(id: params[:actor_id])
+            if owner?
+                @auditions = @user.auditions
+            else
+                flash[:error] = "You do not have access"
+                redirect_to actor_profile_path(@user)
+            end
+        elsif params[:director_id]
+            @user = Director.find_by(id: params[:director_id])
+            if owner?
+                @auditions = @user.auditions
+            else
+                flash[:error] = "You do not have access"
+                redirect_to director_profile_path(@user)
+            end
+        elsif params[:casting_director_id]
+            @user = CastingDirector.find_by(id: params[:casting_director_id])
+            if owner?
+                @auditions = @user.auditions
+            else
+                flash[:error] = "You do not have access"
+                redirect_to casting_director_profile_path(@user)
+            end
+        elsif params[:project_id]
+            @project = Project.find_by(id: params[:project_id])
+            if @project && current_user == @project.director || @project.casting_director
+                @auditions = @project.auditions 
+            else
+                flash[:error] = "You do not have access"
+                redirect_to projects_path
+            end
         end
     end
 
