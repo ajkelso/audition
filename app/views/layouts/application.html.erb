@@ -17,6 +17,8 @@
       <% end %>  
       <% if current_user %>
         <%= link_to "Actors", actors_path %>
+        <%= link_to  "Directors", directors_path %>
+        <%= link_to  "Casting Directors", casting_directors_path %>
         <%= link_to "Projects", projects_path %>
         <%= link_to "My Auditions", actor_auditions_path(current_user.id) %>
         <%= link_to  "Log Out", sign_out_path, method: 'delete' %>
