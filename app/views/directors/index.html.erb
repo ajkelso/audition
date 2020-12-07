@@ -1,0 +1,13 @@
+<h1>Directors</h1>
+<% if !creative? %>
+    <ul>
+    <% @directors.each do |d|%>
+        <li><%= link_to  d.name, director_path(d) %>
+        <% if current_user.directors.include?(d) %>
+            *
+        <% end %>
+        </li>
+    <% end %>
+    </ul>
+    <p>* Indicates a Director for a Project in your tracked auditions</p>
+<% end %>

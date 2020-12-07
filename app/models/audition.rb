@@ -1,7 +1,7 @@
 class Audition < ApplicationRecord
     belongs_to :actor 
     belongs_to :project
-    has_many :notes 
+    has_many :notes, dependent: :destroy
     accepts_nested_attributes_for :notes 
 
     validates :time, uniqueness: { scope: :actor_id, message: "Actor has another audition scheduled at this time." }
