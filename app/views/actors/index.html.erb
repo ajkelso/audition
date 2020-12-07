@@ -1,7 +1,21 @@
 <div class="index">
+    <h1>Actors</h1>
+    <% if !creative? %>
     <ul>
-    <% @actors.each do |actor|%>
-        <li><%= link_to  actor.name, actor_path(actor) %></li>
-    <% end %>
+        <% @actors.each do |actor|%>
+            <li><%= link_to  actor.name, actor_path(actor) %></li>
+        <% end %>
     </ul>
+    <% else %>
+        <ul>
+            <% @actors.each do |actor|%>
+                <li><%= link_to  actor.name, actor_path(actor) %>
+                <% if current_user.actors.include?(actor) %>
+                    *
+                <% end %>
+                </li> 
+            <% end %>
+        </ul>
+        <p>* Indicates an auditioner in your tracked auditions</p>
+    <% end %>
 </div>
