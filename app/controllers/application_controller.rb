@@ -43,17 +43,13 @@ class ApplicationController < ActionController::Base
     def allowed?
         unless owner?
             flash[:error] = "You do not have access to that page."
-            redirect_back(fallback_location: root_path)
+            redirect_to "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile"
         end
     end
 
     def signed_in?
-        if session[:actor_id]
-            redirect_to actor_profile_path(session[:actor_id])
-        elsif session[:director_id]
-            redirect_to director_profile_path(session[:director_id])
-        elsif session[:casting_id]
-            redirect_to casting_profile_path(session[:casting_id])
+        if current_user
+            redirect_to "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile"
         end
     end
 end

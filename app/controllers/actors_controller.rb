@@ -1,7 +1,7 @@
 class ActorsController < ApplicationController
     skip_before_action :verified_user, only: [:new, :create]
     before_action :find_actor, only: [:show, :edit, :update, :profile]
-    before_action :allowed?, only: [:edit, :update]
+    before_action :allowed?, only: [:edit, :update, :profile]
 
     def index
         @actors = Actor.all 
@@ -15,26 +15,11 @@ class ActorsController < ApplicationController
     end
     
     def profile 
-        allowed?
-    end
-    
-    def new
-        signed_in?
-        @actor = Actor.new
-    end
-
-    def create
-        @actor = Actor.new(actor_params)
-        if @actor.save
-            session[:actor_id] = @actor.id 
-            redirect_to actor_path(@actor)
-        else
-            flash.now[:errors] = @actor.errors.full_messages
-            render :new
-        end
+        
     end
 
     def edit
+        
     end
 
     def update
@@ -45,8 +30,6 @@ class ActorsController < ApplicationController
             render :edit
         end
     end
-
-    
 
     private
 

@@ -1,6 +1,6 @@
 module ApplicationHelper
     def creative?
-        current_user.class == Director || Casting
+        (current_user.class == Casting) || (current_user.class == Director)
     end
 
     def my_auditions_link
