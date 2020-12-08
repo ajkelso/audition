@@ -1,6 +1,6 @@
 <%= form_with url: "/google_signup" do |f|%>
     <%= f.label :type, "Sign in with Google as an:" %>
-    <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'CastingDirector']]))%>
+    <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]))%>
     <%= f.submit "Sign in with Google"%>
 <% end %>
 
@@ -10,7 +10,7 @@
     
     <div class="form-group">
         <%=label_tag(:user_type, "Sign in as:")%>
-        <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'CastingDirector']]))%>
+        <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]))%>
     </div>
     
     <div class="form-group">

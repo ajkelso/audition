@@ -1,11 +1,11 @@
-<% if (@director || @casting_director) %>
+<% if (@director || @casting) %>
     <div>
         <h1>Your Projects</h1>
         <ul>
         <%@projects.each do |project|%>
             <li><h3><%=project.title%>(<%=project.medium %>)</h3>
             <p>Director: <%=project.director.name %></p>
-            <p>Casting Director: <%=project.casting_director.name%></p>
+            <p>Casting Director: <%=project.casting.name%></p>
             <% if project.seeking %>
                 <p>*Currently Casting</p>
             <% end %>
@@ -21,7 +21,7 @@
                 <%=proj.label :type, "Type"%>
                 <%=proj.text_field :medium %> <br>
                 <%=proj.label :casting, "Casting Director"%>
-                <%=proj.select :casting_director_id, options_from_collection_for_select(CastingDirector.all, :id, :name) %> <br>  
+                <%=proj.select :casting_id, options_from_collection_for_select(Casting.all, :id, :name) %> <br>  
                 <%=proj.label :seeking, "Currently Casting?"%>
                 <%=proj.check_box :seeking %>
                 <%=proj.submit %> 
@@ -37,7 +37,7 @@
             <%@projects.each do |project|%>
                 <li><h3><%=project.title%>(<%=project.medium %>)</h3>
                 <p>Director: <%=project.director.name %></p>
-                <p>Casting Director: <%=project.casting_director.name%></p>
+                <p>Casting Director: <%=project.casting.name%></p>
                 <% if project_creative?(project) %>
                     <%= link_to  "Edit", edit_project_path(project)%> <%= link_to  "Delete", project_path(project), method: "delete" %></p>
                 <% end %>

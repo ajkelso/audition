@@ -12,7 +12,7 @@ module AuditionsHelper
     def project_id_field(audition)
         concat label_tag "Project: " 
         if audition.project.nil?
-            select_tag 'audition[project_id]', options_from_collection_for_select(Project.all, :id, :title)
+            select_tag 'audition[project_id]', options_from_collection_for_select(Project.get_seeking, :id, :title)
         else
             concat audition.project.title
             hidden_field_tag "audition[project_id]", audition.project_id

@@ -1,6 +1,6 @@
 module ApplicationHelper
     def creative?
-        current_user.class == (Director || CastingDirector)
+        current_user.class == Director || Casting
     end
 
     def my_auditions_link
@@ -8,8 +8,8 @@ module ApplicationHelper
             link_to "My Auditions", actor_auditions_path(current_user.id)
         elsif current_user_model == Director
             link_to "My Auditions", director_auditions_path(current_user.id)
-        elsif current_user_model == CastingDirector 
-            link_to "My Auditions", casting_director_auditions_path(current_user.id)
+        elsif current_user_model == Casting 
+            link_to "My Auditions", casting_auditions_path(current_user.id)
         end
     end
 

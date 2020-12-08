@@ -39,7 +39,7 @@ class ProjectsController < ApplicationController
     end
     
     def project_params
-        params.require(:project).permit(:title, :medium, :director_id, :casting_director_id, :seeking)
+        params.require(:project).permit(:title, :medium, :director_id, :casting_id, :seeking)
     end
 
     def get_projects
@@ -52,10 +52,10 @@ class ProjectsController < ApplicationController
                 flash[:error] = "You do not have access"
                 redirect_to root_path
             end
-        elsif params[:casting_director_id]
-            @casting_director = CastingDirector.find_by(id: params[:casting_director_id])
+        elsif params[:casting_id]
+            @casting = Casting.find_by(id: params[:casting_id])
             if owner? 
-                @projects = @casting_director.projects 
+                @projects = @casting.projects 
             else
                 flash[:error] = "You do not have access"
                 redirect_to root_path

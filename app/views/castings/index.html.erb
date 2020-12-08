@@ -1,0 +1,19 @@
+<h1>Casting Directors</h1>
+<% if !creative? %>
+    <ul>
+    <% @casting.each do |cd|%>
+        <li><%= link_to  cd.name, casting_path(cd) %>
+        <% if current_user.castings.include?(cd) %>
+            *
+        <% end %>
+        </li>
+    <% end %>
+    </ul>
+    <p>* Indicates a Casting Director for a Project in your tracked auditions</p>
+<% else %>
+    <%@casting.each do |cd|%>
+        <ul>
+            <li><%= link_to  cd.name, casting_path(cd) %></li>
+        </ul>
+    <% end %>
+<% end %>

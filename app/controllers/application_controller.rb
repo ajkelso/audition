@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
     helper_method :owner?
     helper_method :current_user_model
 
-
     def verified_user
         unless user_is_authenticated
             flash[:error] = "Please Sign in or Sign up"
@@ -21,8 +20,8 @@ class ApplicationController < ActionController::Base
             @current_user ||= Actor.find_by(id: session[:actor_id])
         elsif session[:director_id]
             @current_user ||= Director.find_by(id: session[:director_id])
-        elsif session[:casting_director_id]
-            @current_user ||= CastingDirector.find_by(id: session[:casting_director_id])
+        elsif session[:casting_id]
+            @current_user ||= Casting.find_by(id: session[:casting_id])
         end
     end
 
@@ -31,14 +30,14 @@ class ApplicationController < ActionController::Base
             Actor
         elsif session[:director_id]
             Director
-        elsif session[:casting_director_id]
-            CastingDirector
+        elsif session[:casting_id]
+            Casting
         end
     end
 
 
     def owner?
-        current_user == (@actor || @director || @casting_director || @user)
+        current_user == (@actor || @director || @casting || @user)
     end
     
     def allowed?
@@ -53,8 +52,8 @@ class ApplicationController < ActionController::Base
             redirect_to actor_profile_path(session[:actor_id])
         elsif session[:director_id]
             redirect_to director_profile_path(session[:director_id])
-        elsif session[:casting_director_id]
-            redirect_to casting_director_profile_path(session[:casting_director_id])
+        elsif session[:casting_id]
+            redirect_to casting_profile_path(session[:casting_id])
         end
     end
 end

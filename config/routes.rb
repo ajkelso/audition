@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :projects
     resources :auditions, shallow: true
   end
-  resources :casting_directors, exclude: [:destroy] do
+  resources :castings, exclude: [:destroy] do
     resources :projects
     resources :auditions, shallow: true
   end
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   get '/actors/:id/profile', to: 'actors#profile', as: 'actor_profile'
   get '/directors/:id/profile', to: 'directors#profile', as: 'director_profile'
+  get '/castings/:id/profile', to: 'castings#profile', as: 'casting_profile'
 
   get '/auth/google_oauth2/callback', to: 'sessions#google_login'
   post '/google_signup', to: 'sessions#google_signup'

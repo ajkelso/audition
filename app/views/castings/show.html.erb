@@ -1,8 +1,8 @@
 <div class="show">
-    <h1><strong>Name:</strong> <%= @casting_director.name %></h1>
-        <p><strong>Email:</strong> <%= @casting_director.email %></p>
+    <h1><strong>Name:</strong> <%= @casting.name %></h1>
+        <p><strong>Email:</strong> <%= @casting.email %></p>
     <% unless current_user_model == Actor %>
-        <p><strong>Phone Number:</strong>  <%= @casting_director.phone_number %></p>
+        <p><strong>Phone Number:</strong>  <%= @casting.phone_number %></p>
     <% end %>
         <p><strong>Current Projects:</strong></p>
             <% if @projects %>
@@ -18,7 +18,7 @@
 <div class= "link"></div>
     <% if owner? %>
         <div class="owner_links">
-        <%= link_to  "Edit Info", edit_casting_director_path(@casting_director) %>
+        <%= link_to  "Edit Info", edit_casting_path(@casting) %>
         </div>
     <% end %>
 </div>

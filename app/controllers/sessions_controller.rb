@@ -46,11 +46,11 @@ class SessionsController < ApplicationController
             user.password = SecureRandom.hex
         end
         session["#{session[:user_type].downcase}_id".to_sym] = @user.id
-        redirect_to actor_profile_path(@user)
+        profile_redirect
     end
 
     def destroy
-        [:actor_id, :director_id, :castingdirector_id].each { |id| session.delete(id) } 
+        [:actor_id, :director_id, :casting_id].each { |id| session.delete(id) } 
         redirect_to new_session_path
     end
 
@@ -58,6 +58,16 @@ class SessionsController < ApplicationController
 
     def session_params
         params.permit(:name, :email, :phone_number, :password, :password_confirmation)
+    end
+
+    def profile_redirect
+        if current_user_model == Actor 
+            redirect_to actor_profile_path(@user)
+        elsif current_user_model == Director 
+            redirect_to director_profile_path(@user)
+        elsif current_user_model == Casting 
+            redirect_to casting_profile_path(@user)
+        end
     end
 
     

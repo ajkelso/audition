@@ -4,7 +4,7 @@ Audition Tracker is a Ruby on Rails app which allows Actors, Directors, and Cast
 
 ## Installation
 
-To use this app, just clone, run `bundle install`, then run `rake db:migrate` and then run `rails s`.
+To use this app, just clone, run `bundle install`, run `rake db:migrate`, run `rails s`, and visit localhost:3000.
 Everything should be set up.
 
 ## Contributing

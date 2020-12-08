@@ -1,7 +1,7 @@
 <h1><%=@project.title %></h1>
 
   <p><strong>Director:</strong> <%=link_to @project.director.name, director_path(@project.director)%></p>
-  <p><strong>Casting Director:</strong> <%=link_to @project.casting_director.name, casting_director_path(@project.casting_director)%></p>
+  <p><strong>Casting Director:</strong> <%=link_to @project.casting.name, casting_path(@project.casting)%></p>
   <% if @project.seeking %>
           <strong>Currently Casting</strong>
       <% else %>

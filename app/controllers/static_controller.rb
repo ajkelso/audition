@@ -6,8 +6,8 @@ class StaticController < ApplicationController
       redirect_to actor_profile_path(session[:actor_id])
     elsif session[:director_id]
       redirect_to director_profile_path(session[:director_id])
-    elsif session[:casting_director_id]
-      redirect_to casting_director_profile_path(session[:casting_director_id])
+    elsif session[:casting_id]
+      redirect_to casting_profile_path(session[:casting_id])
     end
   end
 end

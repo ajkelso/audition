@@ -6,7 +6,7 @@
     <%=proj.label :type, "Type"%>
     <%=proj.text_field :medium %> <br>
     <%=proj.label :casting, "Casting Director"%>
-    <%=proj.select :casting_director_id, options_from_collection_for_select(CastingDirector.all, :id, :name) %> <br>  
+    <%=proj.select :castings_id, options_from_collection_for_select(Casting.all, :id, :name) %> <br>  
     <%=proj.label :seeking, "Currently Casting?"%>
     <%=proj.check_box :seeking %>
     <%=proj.submit %> 

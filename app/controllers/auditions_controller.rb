@@ -72,7 +72,7 @@ class AuditionsController < ApplicationController
             redirect_to actors_path
         elsif params[:project_id]
             project = Project.find_by(params[:project_id])
-            if project && current_user != project.director || project.casting_director 
+            if project && current_user != project.director || project.casting 
                 flash[:error] = "Project not found."
                 redirect_to projects_path
             end
@@ -80,12 +80,12 @@ class AuditionsController < ApplicationController
     end
 
     def actor_or_project_owner? 
-        current_user == @audition.actor || @audition.project.director || @audition.project.casting_director
+        current_user == @audition.actor || @audition.project.director || @audition.project.casting
     end
     
     def can_create?
         project = Project.find_by(params[:audition][:project_id])
-        (params[:audition][:actor_id].to_i == session[:actor_id]) || current_user == (project.director || project.casting_director)
+        (params[:audition][:actor_id].to_i == session[:actor_id]) || current_user == project.director || project.casting
     end
 
     def get_audition_notes
@@ -111,17 +111,17 @@ class AuditionsController < ApplicationController
                 flash[:error] = "You do not have access"
                 redirect_to director_profile_path(@user)
             end
-        elsif params[:casting_director_id]
-            @user = CastingDirector.find_by(id: params[:casting_director_id])
+        elsif params[:casting_id]
+            @user = Casting.find_by(id: params[:casting_id])
             if owner?
                 @auditions = @user.auditions
             else
                 flash[:error] = "You do not have access"
-                redirect_to casting_director_profile_path(@user)
+                redirect_to casting_profile_path(@user)
             end
         elsif params[:project_id]
             @project = Project.find_by(id: params[:project_id])
-            if @project && current_user == @project.director || @project.casting_director
+            if @project && current_user == @project.director || @project.casting
                 @auditions = @project.auditions 
             else
                 flash[:error] = "You do not have access"

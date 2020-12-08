@@ -1,4 +1,4 @@
-class CastingDirector < ApplicationRecord
+class Casting < ApplicationRecord
     has_many :projects
     has_many :auditions, through: :projects
     has_many :actors, through: :auditions
