@@ -6,7 +6,6 @@ class ProjectsController < ApplicationController
 
     def create
         @project = Project.new(project_params)
-        @project.director_id = current_user.id 
         @project.save
         redirect_to director_projects_path(current_user)
     end
@@ -29,7 +28,7 @@ class ProjectsController < ApplicationController
 
     def destroy
         @project.delete 
-        redirect_to projects_index  
+        redirect_to "/#{current_user_model.to_s.downcase}s/#{current_user.id}/projects" 
     end
     
     private

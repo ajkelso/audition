@@ -1,13 +1,3 @@
 <h1>Edit your Project</h1>
 
-<%=form_with model: @project do |proj|%>
-    <%=proj.label "Title" %>
-    <%=proj.text_field :title%> <br>
-    <%=proj.label :type, "Type"%>
-    <%=proj.text_field :medium %> <br>
-    <%=proj.label :casting, "Casting Director"%>
-    <%=proj.select :castings_id, options_from_collection_for_select(Casting.all, :id, :name) %> <br>  
-    <%=proj.label :seeking, "Currently Casting?"%>
-    <%=proj.check_box :seeking %>
-    <%=proj.submit %> 
-<% end %>
+<%= render  "form" %>

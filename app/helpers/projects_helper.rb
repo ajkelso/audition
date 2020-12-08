@@ -3,3 +3,4 @@ module ProjectsHelper
         current_user == (project.director || project.casting)
     end
 end
+

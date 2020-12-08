@@ -4,8 +4,12 @@
         <ul>
         <%@projects.each do |project|%>
             <li><h3><%=project.title%>(<%=project.medium %>)</h3>
-            <p>Director: <%=project.director.name %></p>
-            <p>Casting Director: <%=project.casting.name%></p>
+            <% if @casting %>
+                <p>Director: <%=project.director.name %></p>
+            <% end %>
+            <% if @director %>
+                <p>Casting Director: <%=project.casting.name%></p>  
+            <% end %>
             <% if project.seeking %>
                 <p>*Currently Casting</p>
             <% end %>
@@ -15,17 +19,7 @@
         </ul>
         <div>
         <p>Add a new Project:</p>
-            <%=form_with model: @project do |proj|%>
-                <%=proj.label "Title" %>
-                <%=proj.text_field :title%> <br>
-                <%=proj.label :type, "Type"%>
-                <%=proj.text_field :medium %> <br>
-                <%=proj.label :casting, "Casting Director"%>
-                <%=proj.select :casting_id, options_from_collection_for_select(Casting.all, :id, :name) %> <br>  
-                <%=proj.label :seeking, "Currently Casting?"%>
-                <%=proj.check_box :seeking %>
-                <%=proj.submit %> 
-            <% end %>
+            <%= render  "form" %>
         </div>
     </div>
 
