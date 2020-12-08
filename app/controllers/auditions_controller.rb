@@ -11,10 +11,7 @@ class AuditionsController < ApplicationController
     end
 
     def show
-        unless actor_or_project_owner?
-            flash[:error] = "You do not have access to view that auditon."
-            redirect_to root_path
-        end
+        actor_or_project_owner?
         get_audition_notes
         @note = @audition.notes.build
     end
@@ -35,10 +32,7 @@ class AuditionsController < ApplicationController
     end
 
     def edit
-        unless actor_or_project_owner?
-            flash[:error] = "You do not have access to create or modify that audition."
-            redirect_to root_path
-        end
+        actor_or_project_owner?
     end
 
     def update
@@ -69,23 +63,29 @@ class AuditionsController < ApplicationController
     def verify_actor_or_project
         if params[:actor_id] && params[:actor_id].to_i != session[:actor_id]
             flash[:error] = "You cannot create or modify an audition for another actor."
-            redirect_to actors_path
+            redirect_to "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile"
         elsif params[:project_id]
             project = Project.find_by(params[:project_id])
-            if project && current_user != project.director || project.casting 
-                flash[:error] = "Project not found."
+            if project && (current_user != project.director) || (current_user != project.casting) 
+                flash[:error] = "You cannot create or modify auditions for that project."
                 redirect_to projects_path
             end
         end
     end
 
-    def actor_or_project_owner? 
-        current_user == @audition.actor || @audition.project.director || @audition.project.casting
+    def actor_or_project_owner?
+        if (current_user == @audition.actor) || (current_user == @audition.project.director) || (current_user == @audition.project.casting)
+            true
+        else
+            flash[:error] = "You do not have acces to that information"
+            redirect_to "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile"
+        end
     end
     
     def can_create?
-        project = Project.find_by(params[:audition][:project_id])
-        (params[:audition][:actor_id].to_i == session[:actor_id]) || current_user == project.director || project.casting
+        project = Project.find_by(id: params[:audition][:project_id])
+        byebug
+        (params[:audition][:actor_id].to_i == session[:actor_id]) || (current_user == project.director) || (current_user ==project.casting)
     end
 
     def get_audition_notes
@@ -97,31 +97,22 @@ class AuditionsController < ApplicationController
     def get_auditions_for_user
         if params[:actor_id]
             @user = Actor.find_by(id: params[:actor_id])
-            if owner?
+            if allowed?
                 @auditions = @user.auditions
-            else
-                flash[:error] = "You do not have access"
-                redirect_to actor_profile_path(@user)
             end
         elsif params[:director_id]
             @user = Director.find_by(id: params[:director_id])
-            if owner?
+            if allowed?
                 @auditions = @user.auditions
-            else
-                flash[:error] = "You do not have access"
-                redirect_to director_profile_path(@user)
             end
         elsif params[:casting_id]
             @user = Casting.find_by(id: params[:casting_id])
-            if owner?
+            if allowed?
                 @auditions = @user.auditions
-            else
-                flash[:error] = "You do not have access"
-                redirect_to casting_profile_path(@user)
             end
         elsif params[:project_id]
             @project = Project.find_by(id: params[:project_id])
-            if @project && current_user == @project.director || @project.casting
+            if @project && (current_user == @project.director) || (current_user == @project.casting)
                 @auditions = @project.auditions 
             else
                 flash[:error] = "You do not have access"

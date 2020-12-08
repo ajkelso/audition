@@ -41,9 +41,11 @@ class ApplicationController < ActionController::Base
     end
     
     def allowed?
-        unless owner?
+        if !owner?
             flash[:error] = "You do not have access to that page."
             redirect_to "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile"
+        else
+            true
         end
     end
 

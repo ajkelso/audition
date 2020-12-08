@@ -1,7 +1,7 @@
 class DirectorsController < ApplicationController
     skip_before_action :verified_user, only: [:new, :create]
     before_action :find_director, only: [:show, :edit, :update, :profile]
-    before_action :allowed?, only: [:edit, :update]
+    before_action :allowed?, only: [:edit, :update, :profile]
 
     def index
         @directors = Director.all 
