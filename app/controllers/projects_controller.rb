@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
     def create
         @project = Project.new(project_params)
         @project.save
-        redirect_to director_projects_path(current_user)
+        redirect_to current_user_projects_path
     end
 
     def show
@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
 
     def destroy
         @project.delete 
-        redirect_to "/#{current_user_model.to_s.downcase}s/#{current_user.id}/projects" 
+        redirect_to current_user_projects_path
     end
     
     private
@@ -55,6 +55,7 @@ class ProjectsController < ApplicationController
             @casting = Casting.find_by(id: params[:casting_id])
             if owner? 
                 @projects = @casting.projects 
+                @project = Project.new(casting_id: params[:casting_id])
             else
                 flash[:error] = "You do not have access"
                 redirect_to root_path
@@ -62,6 +63,10 @@ class ProjectsController < ApplicationController
         else
             @projects = Project.get_seeking    
         end
+    end
+
+    def current_user_projects_path
+        "/#{current_user_model.to_s.downcase}s/#{current_user.id}/projects" 
     end
         
 
