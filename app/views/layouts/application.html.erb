@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <nav>
+    <nav class="container text-center">
       <% if !current_user %>
         <%= link_to  "Sign In", new_session_path %>
         <%= link_to  "Sign Up", '/signup' %>
