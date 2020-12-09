@@ -19,14 +19,14 @@ Rails.application.routes.draw do
   end
   resources :sessions, only: [:new, :create]
   delete "/session", to: "sessions#destroy", as: 'sign_out'
-
+  #profile
   get '/actors/:id/profile', to: 'actors#profile', as: 'actor_profile'
   get '/directors/:id/profile', to: 'directors#profile', as: 'director_profile'
   get '/castings/:id/profile', to: 'castings#profile', as: 'casting_profile'
-
+  #google sign up/in 
   get '/auth/google_oauth2/callback', to: 'sessions#google_login'
   post '/google_signup', to: 'sessions#google_signup'
-
+  #signup
   get '/signup', to: 'sessions#signup'
   post '/signup', to: 'sessions#create_user'
 
