@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
     def allowed?
         if !owner?
             flash[:error] = "You do not have access to that page."
-            redirect_to "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile"
+            redirect_to profile
         else
             true
         end
@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
 
     def signed_in?
         if current_user
-            redirect_to profile_path
+            redirect_to profile
         end
     end
 

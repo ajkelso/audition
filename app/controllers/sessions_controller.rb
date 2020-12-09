@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
         @user = params[:user_type].constantize.find_by(email: params[:email])
         if @user && @user.authenticate(params[:password])
             session["#{params[:user_type].downcase}_id".to_sym] = @user.id
-            redirect_to "/#{params[:user_type].downcase}s/#{@user.id}/profile"
+            redirect_to profile
         else
             flash[:error] = "Invalid email address or password"
             redirect_to new_session_path
@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
         @user = params[:user_type].constantize.new(session_params)
         if @user.save
             session["#{params[:user_type].downcase}_id".to_sym] = @user.id
-            redirect_to "/#{params[:user_type].downcase}s/#{@user.id}/profile"
+            redirect_to profile
         else    
             flash.now[:errors] = @user.errors.full_messages
             render :signup
@@ -69,6 +69,4 @@ class SessionsController < ApplicationController
             redirect_to casting_profile_path(@user)
         end
     end
-
-    
 end

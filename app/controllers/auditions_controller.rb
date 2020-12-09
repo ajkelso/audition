@@ -87,12 +87,12 @@ class AuditionsController < ApplicationController
     def verify_actor_or_project
         if params[:actor_id] && params[:actor_id].to_i != session[:actor_id]
             flash[:error] = "You cannot create or modify an audition for another actor."
-            redirect_to "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile"
+            redirect_to profile
         elsif params[:project_id]
             project = Project.find_by(params[:project_id])
             if project && (current_user != project.director) || (current_user != project.casting) 
                 flash[:error] = "You cannot create or modify auditions for that project."
-                redirect_to projects_path
+                redirect_to profile
             end
         end
     end
