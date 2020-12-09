@@ -51,7 +51,13 @@ class ApplicationController < ActionController::Base
 
     def signed_in?
         if current_user
-            redirect_to "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile"
+            redirect_to profile_path
         end
     end
+
+    def profile
+        "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile"
+    end
+
+    
 end
