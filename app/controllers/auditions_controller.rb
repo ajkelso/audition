@@ -11,32 +11,29 @@ class AuditionsController < ApplicationController
     end
 
     def show
-        actor_or_project_owner?
+        audition_access?
         get_audition_notes
         @note = @audition.notes.build
     end
 
     def create
-        if can_create?
-            @audition = Audition.new(audition_params)
-            if @audition.save
-                redirect_to audition_path(@audition)
-            else
-                flash.now[:errors] = @audition.errors.full_messages
-                render :new
-            end
+        @audition = Audition.new(audition_params)
+        audition_access?
+
+        if @audition.save
+            redirect_to audition_path(@audition)
         else
-            flash[:error] = "You do not have access to create or modify that audition."
-            redirect_to root_path
+            flash.now[:errors] = @audition.errors.full_messages
+            render :new
         end
     end
 
     def edit
-        actor_or_project_owner?
+        audition_access?
     end
 
     def update
-        if @audition && actor_or_project_owner?
+        if @audition && audition_owner?
             @audition.update(audition_params)
             redirect_to audition_path(@audition)
         else
@@ -58,40 +55,6 @@ class AuditionsController < ApplicationController
 
     def find_audition
         @audition = Audition.find_by(id: params[:id])
-    end
-
-    def verify_actor_or_project
-        if params[:actor_id] && params[:actor_id].to_i != session[:actor_id]
-            flash[:error] = "You cannot create or modify an audition for another actor."
-            redirect_to "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile"
-        elsif params[:project_id]
-            project = Project.find_by(params[:project_id])
-            if project && (current_user != project.director) || (current_user != project.casting) 
-                flash[:error] = "You cannot create or modify auditions for that project."
-                redirect_to projects_path
-            end
-        end
-    end
-
-    def actor_or_project_owner?
-        if (current_user == @audition.actor) || (current_user == @audition.project.director) || (current_user == @audition.project.casting)
-            true
-        else
-            flash[:error] = "You do not have acces to that information"
-            redirect_to "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile"
-        end
-    end
-    
-    def can_create?
-        project = Project.find_by(id: params[:audition][:project_id])
-        byebug
-        (params[:audition][:actor_id].to_i == session[:actor_id]) || (current_user == project.director) || (current_user ==project.casting)
-    end
-
-    def get_audition_notes
-        if @audition.notes
-            @notes = @audition.notes.select {|note| note.notable_type == current_user_model.to_s }
-        end
     end
 
     def get_auditions_for_user
@@ -120,5 +83,34 @@ class AuditionsController < ApplicationController
             end
         end
     end
+    
+    def verify_actor_or_project
+        if params[:actor_id] && params[:actor_id].to_i != session[:actor_id]
+            flash[:error] = "You cannot create or modify an audition for another actor."
+            redirect_to "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile"
+        elsif params[:project_id]
+            project = Project.find_by(params[:project_id])
+            if project && (current_user != project.director) || (current_user != project.casting) 
+                flash[:error] = "You cannot create or modify auditions for that project."
+                redirect_to projects_path
+            end
+        end
+    end
 
+    def audition_access?
+        unless audition_owner?
+            flash[:error] = "You do not have access"
+            redirect_to "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile"
+        end
+    end
+
+    def audition_owner?
+        (current_user == @audition.actor) || (current_user == @audition.project.director) || (current_user == @audition.project.casting)
+    end
+    
+    def get_audition_notes
+        if @audition.notes
+            @notes = @audition.notes.select {|note| note.notable_type == current_user_model.to_s }
+        end
+    end
 end
