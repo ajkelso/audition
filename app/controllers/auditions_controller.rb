@@ -44,7 +44,7 @@ class AuditionsController < ApplicationController
 
     def destroy
         @audition.delete
-        redirect_to actor_auditions_path(@audition.actor)
+        redirect_to "/#{current_user_model.to_s.downcase}s/#{current_user.id}/auditions"
     end
 
     private
@@ -66,12 +66,12 @@ class AuditionsController < ApplicationController
         elsif params[:director_id]
             @user = Director.find_by(id: params[:director_id])
             if allowed?
-                @auditions = @user.auditions
+                @projects = @user.projects
             end
         elsif params[:casting_id]
             @user = Casting.find_by(id: params[:casting_id])
             if allowed?
-                @auditions = @user.auditions
+                @projects = @user.projects
             end
         elsif params[:project_id]
             @project = Project.find_by(id: params[:project_id])

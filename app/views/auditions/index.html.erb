@@ -8,12 +8,27 @@
 <div class="index">
     <h1><%= @user.name%>'s Auditions</h1>
     
-    <ul>
-    <% @auditions.each do |audition|%>
-        <li><h3><%= link_to  audition.project.title, audition_path(audition) %></h3>
-        </li>
+    <% if current_user_model == Actor %>
+        <ul>
+        <% @auditions.each do |audition|%>
+            <li><h3><%= link_to  audition.project.title, audition_path(audition) %></h3>
+            </li>
+        <% end %>
+        </ul>
+    <% else %>
+        <ul>
+        <% @projects.each do |project|%>
+            <% if !project.auditions.empty? %>  
+                <li><h2><%=project.title%></h2></li>
+                <ul>
+                <%project.auditions.each do |audition|%>
+                    <li><%= link_to  audition.actor.name, audition_path(audition) %></li>
+                <% end %>
+                </ul>
+            <% end %>
+        <% end %>
+        </ul>
     <% end %>
-    </ul>
 
     <div class="owner_links">
         <%= link_to  "Add Audition", "/#{current_user_model.to_s.downcase}s/#{current_user.id}/auditions/new" %>
