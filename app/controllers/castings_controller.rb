@@ -1,7 +1,6 @@
 class CastingsController < ApplicationController
-    skip_before_action :verified_user, only: [:new, :create]
     before_action :find_casting, only: [:show, :edit, :update, :profile]
-    before_action :allowed?, only: [:edit, :update]
+    before_action :allowed?, only: [:edit, :update, :profile]
 
     def index
         @casting = Casting.all 
@@ -18,24 +17,9 @@ class CastingsController < ApplicationController
     def profile 
         allowed?
     end
-    
-    def new
-        signed_in?
-        @casting = Casting.new
-    end
-
-    def create
-        @casting = Casting.new(casting_params)
-        if @casting.save
-            session[:casting_id] = @casting.id 
-            redirect_to casting_path(@casting)
-        else
-            flash.now[:errors] = @casting.errors.full_messages
-            render :new
-        end
-    end
 
     def edit
+
     end
 
     def update
@@ -46,8 +30,6 @@ class CastingsController < ApplicationController
             render :edit
         end
     end
-
-    
 
     private
 

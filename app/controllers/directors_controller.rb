@@ -1,5 +1,4 @@
 class DirectorsController < ApplicationController
-    skip_before_action :verified_user, only: [:new, :create]
     before_action :find_director, only: [:show, :edit, :update, :profile]
     before_action :allowed?, only: [:edit, :update, :profile]
 
@@ -16,26 +15,11 @@ class DirectorsController < ApplicationController
     end
     
     def profile 
-        allowed?
+    
     end
     
-    def new
-        signed_in?
-        @director = Director.new
-    end
-
-    def create
-        @director = Director.new(director_params)
-        if @director.save
-            session[:director_id] = @director.id 
-            redirect_to director_path(@director)
-        else
-            flash.now[:errors] = @director.errors.full_messages
-            render :new
-        end
-    end
-
     def edit
+        
     end
 
     def update
