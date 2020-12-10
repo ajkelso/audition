@@ -1,19 +1,25 @@
-<h1>Directors</h1>
+<div class="container text-center">
+    <h1>Directors</h1>
+</div>
 <% if !creative? %>
-    <ul>
-    <% @directors.each do |d|%>
-        <li><%= link_to  d.name, director_path(d) %>
-        <% if current_user.directors.include?(d) %>
-            *
-        <% end %>
-        </li>
-    <% end %>
-    </ul>
-    <p>* Indicates a Director for a Project in your tracked auditions</p>
+    <div class="d-flex justify-content-center">
+            <ul>
+            <% @directors.each do |d|%>
+                <li><%= link_to  d.name, director_path(d) %>
+                <% if current_user.directors.include?(d) %>
+                    *
+                <% end %>
+                </li>
+            <% end %>
+            </ul>
+    </div>
+    <p class="text-center">* Indicates a Director for a Project in your tracked auditions</p>
 <% else %>
-    <%@directors.each do |d|%>
-        <ul>
-            <li><%= link_to  d.name, director_path(d) %></li>
-        </ul>
-    <% end %>
+    <div class="text-center">
+        <%@directors.each do |d|%>
+            <ul>
+                <li><%= link_to  d.name, director_path(d) %></li>
+            </ul>
+        <% end %>
+    </div>
 <% end %>
