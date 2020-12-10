@@ -1,5 +1,5 @@
 <div class="container text-center">
-    <h1>Directors</h1>
+    <h2>Directors</h2>
 </div>
 <% if !creative? %>
     <div class="d-flex justify-content-center">
@@ -15,11 +15,11 @@
     </div>
     <p class="text-center">* Indicates a Director for a Project in your tracked auditions</p>
 <% else %>
-    <div class="text-center">
-        <%@directors.each do |d|%>
-            <ul>
+    <div class="d-flex justify-content-center">
+        <ul>
+            <%@directors.each do |d|%>
                 <li><%= link_to  d.name, director_path(d) %></li>
-            </ul>
-        <% end %>
+            <% end %>
+        </ul>
     </div>
 <% end %>

@@ -1,7 +1,7 @@
-<div>
-    <h1><%=@casting.name%></h1>
+<div class="container text-center">
+    <h2><%=@casting.name%></h2>
 </div>
 
-<div>
+<div class="container text-center">
     <h3>You have <%=link_to pluralize(@casting.projects.count, 'project'), casting_projects_path(@casting)%>. </h3>
 </div>
