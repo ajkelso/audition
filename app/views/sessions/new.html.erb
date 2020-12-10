@@ -1,30 +1,39 @@
-<%= form_with url: "/google_signup" do |f|%>
-    <%= f.label :type, "Sign in with Google as an:" %>
-    <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]))%>
-    <%= f.submit "Sign in with Google"%>
-<% end %>
+<div class="d-flex justify-content-center">
+    <%= form_with url: "/google_signup", class:"w-25" do |f|%>
+        <div class="form-group">
+            <%= f.label :type, "Sign in with Google as an:" %>
+            <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]), class:"form-control")%>
+        </div>
+        <br>
+        <div class="form-group">
+            <%= f.submit "Sign in with Google", class:"form-control"%>
+        </div>
+    <% end %>
+</div>
 
-<div><p>Or: </p></div>
+    <div class="container text-center"><p>-Or- </p></div>
 
-<%= form_with(url: "/sessions", method: "post") do %>
-    
-    <div class="form-group">
-        <%=label_tag(:user_type, "Sign in as:")%>
-        <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]))%>
-    </div>
-    
-    <div class="form-group">
-        <%=label_tag(:email, "Email Address:")%>
-        <%=text_field_tag(:email)%>
-    </div>
+<div class="d-flex justify-content-center">
+    <%= form_with(url: "/sessions", method: "post", class:"w-25") do %>
+        
+        <div class="form-group">
+            <%=label_tag(:user_type, "Sign in as:")%>
+            <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]), class:"form-control")%>
+        </div>
+        
+        <div class="form-group">
+            <%=label_tag :email, "Email Address:"%>
+            <%=text_field_tag :email, "", class:"form-control" %>
+        </div>
 
-    <div class="form-group">
-        <%=label_tag(:password, "Password:")%>
-        <%=password_field_tag(:password)%>
-    </div>
-
-    <div class="form-group">
-        <%=submit_tag("Sign In")%>
-    </div>
-    
-<% end %>
+        <div class="form-group">
+            <%=label_tag(:password, "Password:")%>
+            <%=password_field_tag :password, "", class:"form-control"%>
+        </div>
+    <br>
+        <div class="form-group">
+            <%=submit_tag "Sign In", class:"form-control" %>
+        </div>
+        
+    <% end %>
+</div>
