@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AuditionProject</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Audition Tracker" %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,21 +11,26 @@
   </head>
 
   <body>
-    <nav class="container text-center">
-      <% if !current_user %>
-        <%= link_to  "Sign In", new_session_path %>
-        <%= link_to  "Sign Up", '/signup' %>
-      <% end %>  
-      <% if current_user %>
-        
-        <%= link_to "Actors", actors_path %>
-        <%= link_to  "Directors", directors_path %>
-        <%= link_to  "Casting Directors", castings_path %>
-        <%= link_to "Projects", projects_path %>
-        <%= my_auditions_link %>
-        <%= link_to  "Log Out", sign_out_path, method: 'delete' %>
-      <% end %>
-    </nav>
+    <header>
+    <div class="container">
+      <h1 class="text-center">Audition Tracker</h1>
+      <nav class="container text-center">
+        <% if !current_user %>
+          <%= link_to  "Sign In", new_session_path %>
+          <%= link_to  "Sign Up", '/signup' %>
+        <% end %>  
+        <% if current_user %>
+          
+          <%= link_to "Actors", actors_path %>
+          <%= link_to  "Directors", directors_path %>
+          <%= link_to  "Casting Directors", castings_path %>
+          <%= link_to "Projects", projects_path %>
+          <%= my_auditions_link %>
+          <%= link_to  "Log Out", sign_out_path, method: 'delete' %>
+        <% end %>
+      </nav>
+    </div>  
+    </header>
   <% if flash[:error]%>
     <div id="errors">
         <%= flash[:error] %>

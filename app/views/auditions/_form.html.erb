@@ -1,8 +1,9 @@
 <div class="d-flex justify-content-center">
     
-        <%=form_with model: @audition do |f|%>
+        <%=form_with model: @audition, class: "w-50" do |f|%>
             <div class="form-group">
-                <h4><%= actor_id_field(@audition)%></h4> 
+                <%= f.label :actor, "Actor: " %>
+                <%= actor_id_field(@audition)%>
             </div>
 
             <div class="form-group">
@@ -16,7 +17,7 @@
 
             <div class="form-group">
                 <%= f.label :time, "Time:" %>
-                <%= f.datetime_local_field :time, class:"form-control" %>
+                <%= f.datetime_local_field :time, class:"form-control w-75" %>
             </div>
 
             <div class="form_group">

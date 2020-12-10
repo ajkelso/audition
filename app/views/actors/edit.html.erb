@@ -1,27 +1,28 @@
+<div class="d-flex justify-content-center">
+    <%= form_with model: @actor, class: "w-50" do |f|%>
+        
+        <div class="form-group">
+            <%=label_tag(:user_type, "Sign in as:")%>
+            <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'CastingDirector']]), class:"form-control")%>
+        </div>
 
-<%= form_with model: @actor do |f|%>
-    
-    <div class="form-group">
-        <%=label_tag(:user_type, "Sign in as:")%>
-        <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'CastingDirector']]))%>
-    </div>
+        <div class="form-group">
+            <%= f.label :name, "Name:" %>
+            <%= f.text_field :name, class:"form-control" %>
+        </div>
 
-    <div class="form-group">
-        <%= f.label :name, "Name:" %>
-        <%= f.text_field :name %>
-    </div>
+        <div class="form-group">
+            <%= f.label :email, "Email Address:" %>
+            <%= f.email_field :email, class:"form-control" %>
+        </div>
 
-    <div class="form-group">
-        <%= f.label :email, "Email Address:" %>
-        <%= f.email_field :email %>
-    </div>
+        <div class="form-group">
+            <%= f.label :phone_number, "Phone Number:" %>
+            <%= f.telephone_field :phone_number, class:"form-control" %>
+        </div>
 
-    <div class="form-group">
-        <%= f.label :phone_number, "Phone Number:" %>
-        <%= f.telephone_field :phone_number %>
-    </div>
-
-    <div class="actions">
-        <%= f.submit %>
-    </div>
-<% end %>
+        <div class="actions">
+            <%= f.submit %>
+        </div>
+    <% end %>
+</div>

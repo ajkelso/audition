@@ -1,7 +1,7 @@
-<div>
-    <h1><%=@actor.name%></h1>
+<div class="container text-center">
+    <h2><%=@actor.name%></h1>
 </div>
 
-<div>
+<div class="container text-center">
     <h3>You have tracked <%=link_to pluralize(@actor.auditions.count, 'audition'), actor_auditions_path(@actor)%>.</h3>
 </div>

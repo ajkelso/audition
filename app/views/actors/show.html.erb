@@ -1,13 +1,12 @@
-<div class="show">
+<div class="text-center">
     <p><strong>Name:</strong> <%= @actor.name %></p>
     <p><strong>Email:</strong> <%= @actor.email %></p>
     <p><strong>Phone Number:</strong>  <%= @actor.phone_number %></p>
 </div>
-<div class= "link"></div>
-    <% if owner? %>
-        <div class="owner_links">
-        <%= link_to  "Edit Info", edit_actor_path %>
-        </div>
-    <% end %>
-</div>
+
+<% if owner? %>
+    <div class="text-center">
+    <%= link_to  "Edit Info", edit_actor_path %>
+    </div>
+<% end %>
 

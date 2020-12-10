@@ -1,6 +1,5 @@
 module AuditionsHelper
     def actor_id_field(audition)
-        concat label_tag "Actor: "
         if audition.actor.nil?
             select_tag 'audition[actor_id]', options_from_collection_for_select(Actor.all, :id, :name), class:"form-control"
         else
