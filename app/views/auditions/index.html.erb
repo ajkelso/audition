@@ -1,37 +1,30 @@
-<% if flash[:error]%>
-    <div id="errors">
-        <%= flash[:error] %>
-    </div>
-<% end %>
-
-
-<div class="index">
+<div class="container text-center">
     <h1><%= @user.name%>'s Auditions</h1>
-    
-    <% if current_user_model == Actor %>
-        <ul>
-        <% @auditions.each do |audition|%>
-            <li><h3><%= link_to  audition.project.title, audition_path(audition) %></h3>
-            </li>
-        <% end %>
-        </ul>
-    <% else %>
-        <ul>
-        <% @projects.each do |project|%>
-            <% if !project.auditions.empty? %>  
-                <li><h2><%=project.title%></h2></li>
-                <ul>
-                <%project.auditions.each do |audition|%>
-                    <li><%= link_to  audition.actor.name, audition_path(audition) %></li>
-                <% end %>
-                </ul>
-            <% end %>
-        <% end %>
-        </ul>
-    <% end %>
-
-    <div class="owner_links">
-        <%= link_to  "Add Audition", "/#{current_user_model.to_s.downcase}s/#{current_user.id}/auditions/new" %>
-    </div>
-
 </div>
+<div class="d-flex justify-content-center">
+<% if current_user_model == Actor %>
+    <ul>
+    <% @auditions.each do |audition|%>
+        <li><h3><%= link_to  audition.project.title, audition_path(audition) %></h3>
+        </li>
+    <% end %>
+    </ul>
+<% else %>
+    <ul>
+    <% @projects.each do |project|%>
+        <% if !project.auditions.empty? %>  
+            <li><h2><%=project.title%></h2></li>
+            <ul>
+            <%project.auditions.each do |audition|%>
+                <li><%= link_to  audition.actor.name, audition_path(audition) %></li>
+            <% end %>
+            </ul>
+        <% end %>
+    <% end %>
+    </ul>
+<% end %>
+</div>
+<div class="text-center">
+    <%= link_to  "Add Audition", "/#{current_user_model.to_s.downcase}s/#{current_user.id}/auditions/new" %>
+</div>
+

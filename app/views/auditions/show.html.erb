@@ -1,46 +1,56 @@
-<div class="show">
+<div class="container text-center">
     <p><strong>Actor Name:</strong> <%= @audition.actor.name %></p>
     <p><strong>Project:</strong> <%= @audition.project.title %></p>
     <p><strong>Location:</strong>  <%= @audition.location %></p>
     <p><strong>Time:</strong>  <%= @audition.time.strftime("%l:%M%P %A, %B %e") %></p>
 </div>
-<div class= "link">
+<div class= "text-center">
     <%= link_to  "Edit Audition", edit_audition_path(@audition) %>
     <%= link_to  "Delete Audition", audition_path, method: 'delete' %>
 </div>
 
-<div>
     <% if @note.id %>
-        <%=form_with model: @note, url: audition_note_path(@audition, @note), method: "patch" do |note| %>
-            <%=note.label "Notes: " %>
-            <%=note.text_area :content, value: @note.content  %>
-            <%=note.hidden_field :audition_id, value: @audition.id %>
-            <%=note.hidden_field :notable_id, value: current_user.id %>
-            <%=note.hidden_field :notable_type, value: current_user.class %>
-            <%=note.submit %> <br>
-        <% end  %>
-    <% else %>
-            <% if @notes %>
-                <div class="notes">
-                    <ul>
-                    <% @notes.each do |n| %>  
-                        <li><%= n.content%> <br>
-                        <%= link_to  "Edit Note", edit_audition_note_path(@audition, n) %> <%= link_to  "Delete Note", audition_note_path(@audition, n), method: "delete" %></li>
-                    <% end %>
-                    </ul>  
+        <div class="d-flex justify-content-center">
+            <%=form_with model: @note, url: audition_note_path(@audition, @note), method: "patch", class: "w-50" do |note| %>
+                <div class="form-group">
+                    <%=note.label "Notes: " %>
+                    <%=note.text_area :content, value: @note.content, class:"form-control"%>
                 </div>
-            <% end %>
+                <%=note.hidden_field :audition_id, value: @audition.id %>
+                <%=note.hidden_field :notable_id, value: current_user.id %>
+                <%=note.hidden_field :notable_type, value: current_user.class %>
+                <div class="form-group">
+                    <%=note.submit %> <br>
+                </div>
+            <% end  %>
+        </div>    
+    <% else %>
+        <% if @notes %>
+            <div class="d-flex justify-content-center"><h4>Notes:</h4></div>
+            <div class="d-flex justify-content-center">
+                <ul>
+                <% @notes.each do |n| %>  
+                    <li><%= n.content%> <br>
+                    <%= link_to  "Edit Note", edit_audition_note_path(@audition, n) %> <%= link_to  "Delete Note", audition_note_path(@audition, n), method: "delete" %></li>
+                <% end %>
+                </ul>  
+            </div>
+        <% end %>
 
-        <div class="note">
+        <div class="d-flex justify-content-center">
             <%=form_with model: @note, url: audition_notes_path(@audition) do |note|%>
-                <%=note.label "Notes: " %>
-                <%=note.text_area :content%> 
+                <div class="form-group">
+                    <%=note.label "Notes: " %>
+                    <%=note.text_area :content, class:"form-control"%> 
+                </div>
                 <%=note.hidden_field :audition_id, value: @audition.id%>
                 <%=note.hidden_field :notable_id, value: current_user.id%>
                 <%=note.hidden_field :notable_type, value: current_user.class%>
-                <%=note.submit %> <br>   
+                <div class="form-group">
+                    <%=note.submit %> <br>  
+                </div> 
             <% end %>
         </div>
     <% end %>
       
-</div>
+
