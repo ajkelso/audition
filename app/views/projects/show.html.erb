@@ -1,5 +1,5 @@
-<h1><%=@project.title %></h1>
-
+<div class= "text-center">
+  <h2><%=@project.title %></h2>
   <p><strong>Director:</strong> <%=link_to @project.director.name, director_path(@project.director)%></p>
   <p><strong>Casting Director:</strong> <%=link_to @project.casting.name, casting_path(@project.casting)%></p>
   <% if @project.seeking %>
@@ -10,3 +10,4 @@
   <% if project_creative?(@project) %>
     <%= link_to  "Edit", edit_project_path(@project)%> <%= link_to  "Delete", project_path(@project), method: "delete" %></p>
   <% end %>
+</div>

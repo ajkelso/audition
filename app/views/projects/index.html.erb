@@ -1,6 +1,7 @@
 <% if (@director || @casting) %>
-    <div>
-        <h1>Your Projects</h1>
+    
+    <h1 class= "text-center">Your Projects</h1>
+    <div class="d-flex justify-content-center">
         <ul>
         <%@projects.each do |project|%>
             <li><h3><%=project.title%>(<%=project.medium %>)</h3>
@@ -17,27 +18,25 @@
             </li>
         <% end %>
         </ul>
-        <div>
-        <p>Add a new Project:</p>
-            <%= render  "form" %>
-        </div>
     </div>
+    <h4 class= "container text-center">Add a new Project:</h4>
+    <%= render  "form" %>
+    
 
 <% else %>
-    <div>
-        <h1>Projects Currently Casting</h1>
-        <div>
-            <ul>
-            <%@projects.each do |project|%>
-                <li><h3><%=project.title%>(<%=project.medium %>)</h3>
-                <p>Director: <%=project.director.name %></p>
-                <p>Casting Director: <%=project.casting.name%></p>
-                <% if project_creative?(project) %>
-                    <%= link_to  "Edit", edit_project_path(project)%> <%= link_to  "Delete", project_path(project), method: "delete" %></p>
-                <% end %>
-                </li>
+    <h1 class= "container text-center">Projects Currently Casting</h1>
+    <div class="d-flex justify-content-center">
+        <ul>
+        <%@projects.each do |project|%>
+            <li><h3><%=project.title%>(<%=project.medium %>)</h3>
+            <p>Director: <%=project.director.name %></p>
+            <p>Casting Director: <%=project.casting.name%></p>
+            <% if project_creative?(project) %>
+                <%= link_to  "Edit", edit_project_path(project)%> <%= link_to  "Delete", project_path(project), method: "delete" %></p>
             <% end %>
-            </ul>
-        </div>
+            </li>
+        <% end %>
+        </ul>
     </div>
+
 <% end %>

@@ -1,18 +1,34 @@
-<%=form_with model: @project do |proj|%>
-                <%=proj.label "Title:" %>
-                <%=proj.text_field :title%> <br>
-                <%=proj.label :type, "Type:"%>
-                <%=proj.text_field :medium %> <br>
-                <% if current_user_model == Director %>
-                    <%=proj.label :casting, "Casting Director:"%>
-                    <%=proj.select :casting_id, options_from_collection_for_select(Casting.all, :id, :name) %> <br>  
-                    <%=proj.hidden_field :director_id, value: current_user.id %>
-                <% elsif current_user_model == Casting %>
-                    <%=proj.label :director, "Director:"%>
-                    <%=proj.select :director_id, options_from_collection_for_select(Director.all, :id, :name) %> <br>  
-                    <%=proj.hidden_field :casting_id, value: current_user.id %>
-                <% end %>
-                <%=proj.label :seeking, "Currently Casting?"%>
-                <%=proj.check_box :seeking %>
-                <%=proj.submit %> 
+<div class="d-flex justify-content-center">
+    <%=form_with model: @project, class: "w-25" do |proj|%>
+        <div class="form-group">
+            <%=proj.label "Title:" %>
+            <%=proj.text_field :title, class:"form-control"%>
+        </div>
+
+        <div class="form-group">
+            <%=proj.label :type, "Type:"%>
+            <%=proj.text_field :medium, class:"form-control" %>
+        </div>
+
+            <% if current_user_model == Director %>
+        <div class="form-group">
+                <%=proj.label :casting, "Casting Director:"%>
+                <%=proj.select :casting_id, options_from_collection_for_select(Casting.all, :id, :name), class:"form-control" %>
+        </div>
+                <%=proj.hidden_field :director_id, value: current_user.id %>
+            <% elsif current_user_model == Casting %>
+                <%=proj.label :director, "Director:"%>
+                <%=proj.select :director_id, options_from_collection_for_select(Director.all, :id, :name), class:"form-control" %>  
+                <%=proj.hidden_field :casting_id, value: current_user.id %>
             <% end %>
+
+        <div class="form-group">
+            <%=proj.label :seeking, "Currently Casting?"%>
+            <%=proj.check_box :seeking %>
+        </div>
+
+        <div class="form-group">
+            <%=proj.submit %> 
+        </div>
+    <% end %>
+</div>
