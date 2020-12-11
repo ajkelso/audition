@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-center">
         <ul>
             <% @actors.each do |actor|%>
-                <li><%= link_to  actor.name, actor_path(actor) %></li>
+                <li><%= link_to  actor.name, actor_path(actor), class:"text-decoration-none" %></li>
             <% end %>
         </ul>
     </div>

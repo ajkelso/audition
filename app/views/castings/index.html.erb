@@ -2,8 +2,8 @@
 <% if !creative? %>
     <div class="d-flex justify-content-center">
         <ul>
-        <% @casting.each do |cd|%>
-            <li><%= link_to  cd.name, casting_path(cd) %>
+        <% @castings.each do |cd|%>
+            <li><%= link_to  cd.name, casting_path(cd), class:"text-decoration-none" %>
             <% if current_user.castings.include?(cd) %>
                 *
             <% end %>
@@ -15,8 +15,8 @@
 <% else %>
     <div class="d-flex justify-content-center">
         <ul>
-        <%@casting.each do |cd|%>
-            <li><%= link_to  cd.name, casting_path(cd) %></li>
+        <%@castings.each do |cd|%>
+            <li><%= link_to  cd.name, casting_path(cd), class:"text-decoration-none" %></li>
         <% end %>
         </ul>
     </div>

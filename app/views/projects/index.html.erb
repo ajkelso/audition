@@ -14,7 +14,7 @@
             <% if project.seeking %>
                 <p>*Currently Casting</p>
             <% end %>
-            <p><%= link_to  "Edit", edit_project_path(project)%> <%= link_to  "Delete", project_path(project), method: "delete" %></p>
+            <p><%= link_to  "Edit", edit_project_path(project), class:"text-decoration-none"%> <%= link_to  "Delete", project_path(project), method: "delete", class:"text-decoration-none" %></p>
             </li>
         <% end %>
         </ul>
@@ -32,7 +32,7 @@
             <p>Director: <%=project.director.name %></p>
             <p>Casting Director: <%=project.casting.name%></p>
             <% if project_creative?(project) %>
-                <%= link_to  "Edit", edit_project_path(project)%> <%= link_to  "Delete", project_path(project), method: "delete" %></p>
+                <%= link_to  "Edit", edit_project_path(project), class:"text-decoration-none"%> <%= link_to  "Delete", project_path(project), method: "delete", class:"text-decoration-none" %></p>
             <% end %>
             </li>
         <% end %>

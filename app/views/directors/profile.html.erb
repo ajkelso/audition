@@ -3,5 +3,5 @@
 </div>
 
 <div class="container text-center">
-    <h3>You have <%=link_to pluralize(@director.projects.count, 'project'), director_projects_path(@director)%>. </h3>
+    <h3>You have <%=link_to pluralize(@director.projects.count, 'project'), director_projects_path(@director), class:"text-decoration-none"%> </h3>
 </div>

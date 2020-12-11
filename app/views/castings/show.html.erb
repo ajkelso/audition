@@ -9,7 +9,7 @@
         <div class="d-flex justify-content-center">
             <ul>
                 <% @projects.each do |project|%>
-                    <li><%=link_to project.title, project_path(project) %></li>  
+                    <li><%=link_to project.title, project_path(project), class:"text-decoration-none" %></li>  
                 <% end %>
             </ul>
         </div>
@@ -20,6 +20,6 @@
 
 <% if owner? %>
     <div class="container text-center">
-    <%= link_to  "Edit Info", edit_casting_path(@casting) %>
+    <%= link_to  "Edit Info", edit_casting_path(@casting), class:"text-decoration-none" %>
     </div>
 <% end %>

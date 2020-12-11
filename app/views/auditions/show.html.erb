@@ -5,8 +5,8 @@
     <p><strong>Time:</strong>  <%= @audition.time.strftime("%l:%M%P %A, %B %e") %></p>
 </div>
 <div class= "text-center">
-    <%= link_to  "Edit Audition", edit_audition_path(@audition) %>
-    <%= link_to  "Delete Audition", audition_path, method: 'delete' %>
+    <%= link_to  "Edit Audition", edit_audition_path(@audition), class:"text-decoration-none" %>
+    <%= link_to  "Delete Audition", audition_path, method: 'delete', class:"text-decoration-none" %>
 </div>
 
     <% if @note.id %>
@@ -31,7 +31,7 @@
                 <ul>
                 <% @notes.each do |n| %>  
                     <li><%= n.content%> <br>
-                    <%= link_to  "Edit Note", edit_audition_note_path(@audition, n) %> <%= link_to  "Delete Note", audition_note_path(@audition, n), method: "delete" %></li>
+                    <%= link_to  "Edit Note", edit_audition_note_path(@audition, n), class:"text-decoration-none" %> <%= link_to  "Delete Note", audition_note_path(@audition, n), method: "delete", class:"text-decoration-none" %></li>
                 <% end %>
                 </ul>  
             </div>

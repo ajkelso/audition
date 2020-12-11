@@ -5,7 +5,7 @@
 <% if current_user_model == Actor %>
     <ul>
     <% @auditions.each do |audition|%>
-        <li><h3><%= link_to  audition.project.title, audition_path(audition) %></h3>
+        <li><h3><%= link_to  audition.project.title, audition_path(audition), class:"text-decoration-none" %></h3>
         </li>
     <% end %>
     </ul>
@@ -16,7 +16,7 @@
             <li><h4><%=project.title%></h4></li>
             <ul>
             <%project.auditions.each do |audition|%>
-                <li><%= link_to  audition.actor.name, audition_path(audition) %></li>
+                <li><%= link_to  audition.actor.name, audition_path(audition), class:"text-decoration-none" %></li>
             <% end %>
             </ul>
         <% end %>
@@ -25,6 +25,6 @@
 <% end %>
 </div>
 <div class="text-center">
-    <%= link_to  "Add Audition", "/#{current_user_model.to_s.downcase}s/#{current_user.id}/auditions/new" %>
+    <%= link_to  "Add Audition", "/#{current_user_model.to_s.downcase}s/#{current_user.id}/auditions/new", class:"text-decoration-none" %>
 </div>
 

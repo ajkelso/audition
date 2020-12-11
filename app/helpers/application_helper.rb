@@ -5,11 +5,11 @@ module ApplicationHelper
 
     def my_auditions_link
         if current_user_model == Actor 
-            link_to "My Auditions", actor_auditions_path(current_user.id)
+            link_to "My Auditions", actor_auditions_path(current_user.id), class:"text-decoration-none"
         elsif current_user_model == Director
-            link_to "My Auditions", director_auditions_path(current_user.id)
+            link_to "My Auditions", director_auditions_path(current_user.id), class:"text-decoration-none"
         elsif current_user_model == Casting 
-            link_to "My Auditions", casting_auditions_path(current_user.id)
+            link_to "My Auditions", casting_auditions_path(current_user.id), class:"text-decoration-none"
         end
     end
 

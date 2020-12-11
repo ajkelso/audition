@@ -58,6 +58,5 @@ class ApplicationController < ActionController::Base
     def profile
         "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile"
     end
-
     
 end
