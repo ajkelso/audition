@@ -11,7 +11,7 @@ module AuditionsHelper
     def project_id_field(audition)
         concat label_tag "Project: " 
         if audition.project.nil? && creative?
-            select_tag 'audition[project_id]', options_from_collection_for_select(current_user.projects, :id, :title), class:"form-control"
+            select_tag 'audition[project_id]', options_from_collection_for_select(current_user.projects.get_seeking, :id, :title), class:"form-control"
         elsif audition.project.nil? && !creative?
             select_tag 'audition[project_id]', options_from_collection_for_select(Project.get_seeking, :id, :title), class:"form-control"
         else
