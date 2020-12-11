@@ -33,7 +33,12 @@ class AuditionsController < ApplicationController
     end
 
     def edit
-        audition_access?
+        if @audition
+            audition_access?
+        else
+            flash[:error] = "Audition not found"
+            redirect_to profile
+        end
     end
 
     def update
