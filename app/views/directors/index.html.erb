@@ -18,7 +18,7 @@
     <div class="d-flex justify-content-center">
         <ul>
             <%@directors.each do |d|%>
-                <li><%= link_to  d.name, director_path(d) %></li>
+                <li><%= link_to  d.name, director_path(d), class:"text-decoration-none" %></li>
             <% end %>
         </ul>
     </div>

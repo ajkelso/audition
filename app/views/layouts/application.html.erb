@@ -31,20 +31,20 @@
           </nav>
       </div>   
     </header>
-  <% if flash[:error]%>
-    <div class="text-center text-white bg-danger">
-        <h5><%= flash[:error] %></h5>
-    </div>
-  <% end %>
-  <% if flash[:errors]%>
-    <div class="text-center text-white bg-danger">
+    <% if flash[:error]%>
+      <div class="text-center text-white bg-danger">
+          <h5><%= flash[:error] %></h5>
+      </div>
+    <% end %>
+    <% if flash[:errors]%>
+      <div class="text-center text-white bg-danger">
         <ul>
-        <% flash[:errors].each do |message|%>
-            <li><%= message %></li>
-        <% end %>
+          <% flash[:errors].each do |m|%>
+            <h3><li><%= m %></li></h3>
+          <% end %>
         </ul>
-    </div>
-<% end %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

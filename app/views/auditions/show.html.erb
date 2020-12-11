@@ -1,7 +1,9 @@
 <div class="container text-center">
     <p><strong>Actor Name:</strong> <%= @audition.actor.name %></p>
     <p><strong>Project:</strong> <%= @audition.project.title %></p>
-    <p><strong>Location:</strong>  <%= @audition.location %></p>
+    <% if @audition.location %>
+        <p><strong>Location:</strong>  <%= @audition.location %></p>
+    <% end %>
     <p><strong>Time:</strong>  <%= @audition.time.strftime("%l:%M%P %A, %B %e") %></p>
 </div>
 <div class= "text-center">
@@ -11,7 +13,7 @@
 
     <% if @note.id %>
         <div class="d-flex justify-content-center">
-            <%=form_with model: @note, url: audition_note_path(@audition, @note), method: "patch", class: "w-50" do |note| %>
+            <%=form_with model: @note, url: audition_note_path(@audition, @note), method: "patch" do |note| %>
                 <div class="form-group">
                     <%=note.label "Notes: " %>
                     <%=note.text_area :content, value: @note.content, class:"form-control"%>

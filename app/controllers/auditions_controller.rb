@@ -11,20 +11,24 @@ class AuditionsController < ApplicationController
     end
 
     def show
-        audition_access?
-        get_audition_notes
-        @note = @audition.notes.build
+        if @audition
+            audition_access?
+            get_audition_notes
+            @note = @audition.notes.build
+        else
+            flash[:error] = "Audition not found"
+            redirect_to profile
+        end
     end
 
     def create
         @audition = Audition.new(audition_params)
         audition_access?
-
         if @audition.save
             redirect_to audition_path(@audition)
         else
-            flash.now[:errors] = @audition.errors.full_messages
-            render :new
+            flash[:errors] = @audition.errors.full_messages
+            redirect_to "/#{current_user_model.to_s.downcase}s/#{current_user.id}/auditions"
         end
     end
 
