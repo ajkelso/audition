@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   root 'static#home'
   resources :directors, only: [:index, :show, :edit, :update] do
-    resources :projects, exclude: [:new]
+    resources :projects, only: [:index]
     resources :auditions, shallow: true
   end
   resources :castings, only: [:index, :show, :edit, :update] do
-    resources :projects, exclude: [:new]
+    resources :projects, only: [:index]
     resources :auditions, shallow: true
   end
   resources :actors, only: [:index, :show, :edit, :update] do
