@@ -1,47 +1,55 @@
+<div class="d-flex justify-content-center">
+    <%= form_with url: "/google_signup", class:"w-25" do |f|%>
+        <div class="form-group">
+            <%= f.label :type, "Sign up with Google as an:" %>
+            <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]), class:"form-control")%>
+        </div>
+        <br>
+        <div class="form-group">
+            <%= f.submit "Sign up with Google"%>
+        </div>
 
-<%= form_with url: "/google_signup" do |f|%>
-    <%= f.label :type, "Sign up with Google as an:" %>
-    <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]))%>
-    <%= f.submit "Sign up with Google"%>
-<% end %>
+    <% end %>
+</div>
 
-<div><p>Or:</p></div>
+<div class="container text-center"><p>-Or-</p></div>
 
-<%= form_with url: '/signup' do |f|%>
+<div class="d-flex justify-content-center">
+    <%= form_with url: '/signup', class:"w-25" do |f|%> 
+        <div class="form-group">
+            <%=label_tag(:user_type, "Sign up as:")%>
+            <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]), class:"form-control")%>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :name, "Name:" %>
+            <%= f.text_field :name, class:"form-control" %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :email, "Email Address:" %>
+            <%= f.email_field :email, class:"form-control" %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :phone_number, "Phone Number:" %>
+            <%= f.telephone_field :phone_number, class:"form-control" %>
+        </div>
     
-    <div class="form-group">
-        <%=label_tag(:user_type, "Sign up as:")%>
-        <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]))%>
-    </div>
 
-    <div class="form-group">
-        <%= f.label :name, "Name:" %>
-        <%= f.text_field :name %>
-    </div>
+        <div class="form-group">
+            <%= f.label :password, "Password:" %>
+            <%= f.text_field :password, class:"form-control" %>
+        </div>
 
-    <div class="form-group">
-        <%= f.label :email, "Email Address:" %>
-        <%= f.email_field :email %>
-    </div>
+        <div class="form-group">
+            <%= f.label :password_confirmation, "Confirm Password:" %>
+            <%= f.password_field :password_confirmation, class:"form-control" %>
+        </div>
+        <br>
 
-    <div class="form-group">
-        <%= f.label :phone_number, "Phone Number:" %>
-        <%= f.telephone_field :phone_number %>
-    </div>
- 
-
-    <div class="form-group">
-        <%= f.label :password, "Password:" %>
-        <%= f.text_field :password %>
-    </div>
-
-    <div class="form-group">
-        <%= f.label :password_confirmation, "Confirm Password:" %>
-        <%= f.password_field :password_confirmation %>
-    </div>
-
-
-    <div class="actions">
-        <%= f.submit "Sign up"%>
-    </div>
-<% end %>
+        <div class="actions">
+            <%= f.submit "Sign up"%>
+        </div>
+    <% end %>
+</div>
