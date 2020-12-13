@@ -9,9 +9,18 @@ module AuditionsHelper
 
     def project_id_field(audition)
         if audition.id.nil?
-            select_tag 'audition[project_id]', options_from_collection_for_select(@projects, :id, :title), class:"form-control"
+            select_tag 'audition[project_id]', options_from_collection_for_select(@projects, :id, :title, :selected => selected_project), class:"form-control"
         else
             select_tag 'audition[project_id]', options_for_select([["#{@audition.project.title}", "#{@audition.project.id}"]]), class:"form-control"
         end
-    end    
+    end  
+    
+    def selected_project
+        if @audition.project.nil?
+            @projects.first.id
+        else
+            @audition.project.id
+        end
+    end
+
 end
