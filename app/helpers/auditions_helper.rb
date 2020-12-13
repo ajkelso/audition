@@ -1,7 +1,7 @@
 module AuditionsHelper
     def actor_id_field(audition)
         if audition.id.nil? && creative?
-            select_tag 'audition[actor_id]', options_from_collection_for_select(Actor.all, :id, :name), class:"form-control"
+            select_tag 'audition[actor_id]', options_from_collection_for_select(Actor.all, :id, :name, :selected => selected_actor), class:"form-control"
         else
             select_tag 'audition[actor_id]', options_for_select([["#{@audition.actor.name}", "#{@audition.actor.id}"]]), class:"form-control"
         end
@@ -13,7 +13,15 @@ module AuditionsHelper
         else
             select_tag 'audition[project_id]', options_for_select([["#{@audition.project.title}", "#{@audition.project.id}"]]), class:"form-control"
         end
-    end  
+    end 
+    
+    def selected_actor
+        if @audition.actor.nil?
+            Actor.all.first
+        else
+            @audition.actor.id
+        end
+    end
     
     def selected_project
         if @audition.project.nil?
