@@ -12,32 +12,30 @@
 
   <body>
     <header>
-      <div class="container">
-        <h1 class="text-center">Audition Tracker</h1>
-          <nav class="container text-center border-bottom border-top">
-            <% if !current_user %>
-              <%= link_to  "Sign In", new_session_path, class:"text-decoration-none" %> | 
-              <%= link_to  "Sign Up", '/signup', class:"text-decoration-none" %>
-            <% end %>  
-            <% if current_user %>
-              <%= link_to  "Home", "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile", class:"text-decoration-none" %> |
-              <%= link_to "Actors", actors_path, class:"text-decoration-none" %> |
-              <%= link_to  "Directors", directors_path, class:"text-decoration-none" %> |
-              <%= link_to  "Casting Directors", castings_path, class:"text-decoration-none" %> |
-              <%= link_to "Projects", projects_path, class:"text-decoration-none" %> |
-              <%= my_auditions_link %> |
-              <%= link_to  "Log Out", sign_out_path, method: 'delete', class:"text-decoration-none" %>
-            <% end %>
-          </nav>
-      </div>   
+      <h1 class="text-center">Audition Tracker</h1>
+      <nav class="container text-center border-bottom border-top">
+        <% if !current_user %>
+          <%= link_to  "Sign In", new_session_path, class:"text-decoration-none" %> | 
+          <%= link_to  "Sign Up", '/signup', class:"text-decoration-none" %>
+        <% end %>  
+        <% if current_user %>
+          <%= link_to  "Home", "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile", class:"text-decoration-none" %> |
+          <%= link_to "Actors", actors_path, class:"text-decoration-none" %> |
+          <%= link_to  "Directors", directors_path, class:"text-decoration-none" %> |
+          <%= link_to  "Casting Directors", castings_path, class:"text-decoration-none" %> |
+          <%= link_to "Projects", projects_path, class:"text-decoration-none" %> |
+          <%= my_auditions_link %> |
+          <%= link_to  "Log Out", sign_out_path, method: 'delete', class:"text-decoration-none" %>
+        <% end %>
+      </nav>
     </header>
-    <% if flash[:error]%>
+    <% if !!flash[:error]%>
       <div class="text-center text-white bg-danger">
           <h5><%= flash[:error] %></h5>
       </div>
     <% end %>
-    <% if flash[:errors]%>
-      <div class="text-center text-white bg-danger">
+    <% if !!flash[:errors]%>
+      <div class="d-flex justify-content-center text-white bg-danger">
         <ul>
           <% flash[:errors].each do |m|%>
             <h3><li><%= m %></li></h3>

@@ -8,6 +8,7 @@ class AuditionsController < ApplicationController
     def new
         verify_actor_or_project  
         @audition = Audition.new(actor_id: params[:actor_id], project_id: params[:project_id])
+        get_projects
     end
 
     def show
@@ -27,8 +28,9 @@ class AuditionsController < ApplicationController
         if @audition.save
             redirect_to audition_path(@audition)
         else
-            flash[:errors] = @audition.errors.full_messages
-            redirect_to "/#{current_user_model.to_s.downcase}s/#{current_user.id}/auditions"
+            flash.now[:errors] = @audition.errors.full_messages
+            get_projects
+            render 'new'
         end
     end
 
@@ -46,7 +48,7 @@ class AuditionsController < ApplicationController
             @audition.update(audition_params)
             redirect_to audition_path(@audition)
         else
-            flash[:error] = "You do not have access to create or modify that audition."
+            flash[:errors] = "You do not have access to create or modify that audition."
             redirect_to root_path
         end
     end
@@ -90,6 +92,8 @@ class AuditionsController < ApplicationController
                 flash[:error] = "You do not have access"
                 redirect_to projects_path
             end
+        else
+            redirect_to profile
         end
     end
     
@@ -120,6 +124,14 @@ class AuditionsController < ApplicationController
     def get_audition_notes
         if @audition.notes
             @notes = @audition.notes.select {|note| note.notable_type == current_user_model.to_s }
+        end
+    end
+
+    def get_projects
+        if current_user_model == Actor
+            @projects = Project.get_seeking
+        else
+            @projects = current_user.projects.get_seeking
         end
     end
 end
