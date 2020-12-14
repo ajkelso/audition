@@ -32,17 +32,14 @@ class ProjectsController < ApplicationController
     end
     
     private
-
-    def find_project
-        @project = Project.find_by(id: params[:id])
-    end
-    
-    def project_params
-        params.require(:project).permit(:title, :medium, :director_id, :casting_id, :seeking)
-    end
-
     def get_projects
-        if params[:director_id]
+        if params[:search_name]
+            @projects = Project.get_director_projects(params[:search_name])
+            unless @projects.present?
+                flash[:error] = "No projects found"
+                redirect_to projects_path
+            end
+        elsif params[:director_id]
             @director = Director.find_by(id: params[:director_id])
             if owner?
                 @projects = @director.projects
@@ -64,6 +61,15 @@ class ProjectsController < ApplicationController
             @projects = Project.get_seeking    
         end
     end
+
+    def find_project
+        @project = Project.find_by(id: params[:id])
+    end
+    
+    def project_params
+        params.require(:project).permit(:title, :medium, :director_id, :casting_id, :seeking)
+    end
+
 
     def current_user_projects_path
         "/#{current_user_model.to_s.downcase}s/#{current_user.id}/projects" 

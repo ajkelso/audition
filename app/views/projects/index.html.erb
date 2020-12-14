@@ -24,6 +24,14 @@
     
 
 <% else %>
+    <div class="d-flex justify-content-center">
+        <%=form_with url: "/search", method: :get, local: true do |f|%>
+            <%= f.label :director_name, "Search for Projects by Director:" %>
+            <%= f.text_field :search_name %>
+            <%= f.submit "Search" %>
+        <% end %>
+    </div>
+
     <h2 class= "container text-center">Projects Currently Casting</h2>
     <div class="d-flex justify-content-center">
         <ul>

@@ -31,4 +31,5 @@ Rails.application.routes.draw do
   post '/signup', to: 'sessions#create_user'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get '/search', to: 'projects#index'
 end

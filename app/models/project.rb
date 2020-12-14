@@ -7,4 +7,12 @@ class Project < ApplicationRecord
     validates_presence_of :medium, message: "Type can't be blank"
 
     scope :get_seeking, -> {where('seeking = ?', true)}
+
+    def self.get_director_projects(query)
+        Project.joins(:director).where("name = ?", query)
+    end
+
+
+    # scope :get_director_projects, -> {where('director_id')}
 end
+
