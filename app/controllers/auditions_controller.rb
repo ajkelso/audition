@@ -26,10 +26,10 @@ class AuditionsController < ApplicationController
         @audition = Audition.new(audition_params)
         audition_access?
         if @audition.save
-            redirect_to audition_path(@audition)
+            redirect_to audition_path(@audition)   
         else
-            flash.now[:errors] = @audition.errors.full_messages
             get_projects
+            flash.now[:errors] = @audition.errors.full_messages
             render 'new'
         end
     end
@@ -118,7 +118,7 @@ class AuditionsController < ApplicationController
     end
 
     def audition_owner?
-        (current_user == @audition.actor) || (current_user == @audition.project.director) || (current_user == @audition.project.casting)
+        (current_user == @audition.actor) || current_user.projects.ids.include?(@audition.project_id)
     end
     
     def get_audition_notes
