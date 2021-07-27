@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+    protect_from_forgery
     before_action :verified_user
     helper_method :current_user
     helper_method :owner?

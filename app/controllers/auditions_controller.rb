@@ -23,6 +23,7 @@ class AuditionsController < ApplicationController
     end
 
     def create
+        byebug
         @audition = Audition.new(audition_params)
         audition_access?
         if @audition.save

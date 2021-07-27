@@ -11,8 +11,5 @@ class Project < ApplicationRecord
     def self.get_director_projects(query)
         Project.joins(:director).where("name = ?", query)
     end
-
-
-    # scope :get_director_projects, -> {where('director_id')}
 end
 
