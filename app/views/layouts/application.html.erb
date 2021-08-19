@@ -12,21 +12,29 @@
 
   <body>
     <header>
-      <h1 class="text-center">Audition Tracker</h1>
-      <nav class="container text-center border-bottom border-top">
-        <% if !current_user %>
-          <%= link_to  "Sign In", new_session_path, class:"text-decoration-none" %> | 
-          <%= link_to  "Sign Up", '/signup', class:"text-decoration-none" %>
-        <% end %>  
-        <% if current_user %>
-          <%= link_to  "Home", "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile", class:"text-decoration-none" %> |
-          <%= link_to "Actors", actors_path, class:"text-decoration-none" %> |
-          <%= link_to  "Directors", directors_path, class:"text-decoration-none" %> |
-          <%= link_to  "Casting Directors", castings_path, class:"text-decoration-none" %> |
-          <%= link_to "Projects", projects_path, class:"text-decoration-none" %> |
-          <%= my_auditions_link %> |
-          <%= link_to  "Log Out", sign_out_path, method: 'delete', class:"text-decoration-none" %>
-        <% end %>
+      <h1 class="text-center bg-secondary">Audition Tracker</h1>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Our Logo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div  class="collapse navbar-collapse">
+          <div class="navbar-nav mr-auto">
+            <% if !current_user %>
+              <%= link_to  "Sign In", new_session_path, class:"nav-item nav-link" %>
+              <%= link_to  "Sign Up", '/signup', class:"nav-item nav-link" %>
+            <% end %>  
+            <% if current_user %>
+              <%= link_to  "Home", "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile", class:"nav-item nav-link" %>
+              <%= link_to "Actors", actors_path, class:"nav-item nav-link" %>
+              <%= link_to  "Directors", directors_path, class:"nav-item nav-link" %>
+              <%= link_to  "Casting Directors", castings_path, class:"nav-item nav-link" %>
+              <%= link_to "Projects", projects_path, class:"nav-item nav-link" %>
+              <%= my_auditions_link %>
+              <%= link_to  "Log Out", sign_out_path, method: 'delete', class:"nav-item nav-link" %>
+            <% end %>
+          </div>
+        </div>
       </nav>
     </header>
     <% if !!flash[:error]%>
