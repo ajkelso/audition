@@ -50,4 +50,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
-gem 'bootstrap', '~> 5.0.0.alpha3'
+gem 'bootstrap', '~> 5.1.0'
+gem 'jquery-rails'
+gem 'popper_js', '~> 2.9.3'
