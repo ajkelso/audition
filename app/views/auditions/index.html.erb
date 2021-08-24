@@ -1,14 +1,23 @@
 <div class="container text-center">
-    <h2><%= @user.name%>'s Auditions</h2>
+    <h2>Tracked Auditions</h2>
 </div>
 <div class="d-flex justify-content-center">
 <% if current_user_model == Actor %>
-    <ul>
-    <% @auditions.each do |audition|%>
-        <li><h3><%= link_to  audition.project.title, audition_path(audition), class:"text-decoration-none" %></h3>
-        </li>
-    <% end %>
-    </ul>
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <% @auditions.each do |audition|%>
+                <div class="col-3 border rounded m-1">
+                    <h3><%= link_to  audition.project.title, audition_path(audition), class:"text-decoration-none" %></h3>
+                    <p><strong>Type:</strong><%= audition.project.medium %></p>
+                    <% if audition.location %>
+                        <p><strong>Location:</strong>  <%= audition.location %></p>
+                    <% end %>
+                    <p><strong>Time:</strong>  <%= audition.time.strftime("%l:%M%P %A, %B %e") %></p>
+                    
+                </div>
+            <% end %>
+        </div>
+    </div>
 <% else %>
     <ul>
     <% @projects.each do |project|%>
@@ -26,5 +35,6 @@
 </div>
 <div class="text-center">
     <%= link_to  "Add Audition", "/#{current_user_model.to_s.downcase}s/#{current_user.id}/auditions/new", class:"text-decoration-none" %>
+
 </div>
 
