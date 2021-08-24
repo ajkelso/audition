@@ -8,12 +8,7 @@
             <% @auditions.each do |audition|%>
                 <div class="col-3 border rounded m-1">
                     <h3><%= link_to  audition.project.title, audition_path(audition), class:"text-decoration-none" %></h3>
-                    <p><strong>Type:</strong><%= audition.project.medium %></p>
-                    <% if audition.location %>
-                        <p><strong>Location:</strong>  <%= audition.location %></p>
-                    <% end %>
-                    <p><strong>Time:</strong>  <%= audition.time.strftime("%l:%M%P %A, %B %e") %></p>
-                    
+                    <%= render  "show", :@audition => audition %>   
                 </div>
             <% end %>
         </div>

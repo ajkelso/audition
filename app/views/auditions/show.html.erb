@@ -1,17 +1,16 @@
 <div class="w-50 mx-auto border rounded">
     <div class="container text-center">
-        <p><strong>Actor Name:</strong> <%= @audition.actor.name %></p>
-        <p><strong>Project:</strong> <%= @audition.project.title %></p>
-        <p><strong>Type:</strong> <%= @audition.project.medium %></p>
-        
-        <% if @audition.location %>
-            <p><strong>Location:</strong>  <%= @audition.location %></p>
+        <% if current_user_model != Actor %>
+            <p><strong>Actor Name:</strong> <%= @audition.actor.name %></p>
         <% end %>
-        <p><strong>Time:</strong>  <%= @audition.time.strftime("%l:%M%P %A, %B %e") %></p>
+        <p><strong>Project:</strong> <%= @audition.project.title %></p>
+        <%= render  "show"%>
+    
         <div class= "text-center">
             <%= link_to  "Edit Audition", edit_audition_path(@audition), class:"text-decoration-none" %>
             <%= link_to  "Delete Audition", audition_path, method: 'delete', class:"text-decoration-none" %>
         </div>
+    
     </div>
 
     <% if @note.id %>
