@@ -18,7 +18,7 @@
     </div>
 <% else %>
     <% @projects.each do |project|%>
-        <div class="project-auditions col-3 border rounded m-1">
+        <div class="project-auditions col-4 border rounded m-1">
             <% if !project.auditions.empty? %>  
                 <h4 class="text-center"><%=project.title%></h4>
                 <ul>
@@ -31,8 +31,7 @@
     <% end %>
 <% end %>
 </div>
-<div class="text-center">
-    <%= link_to  "Add Audition", "/#{current_user_model.to_s.downcase}s/#{current_user.id}/auditions/new", class:"text-decoration-none" %>
-
+<div class="container d-flex justify-content-center">
+    <%= link_to  "Track New Audition", "/#{current_user_model.to_s.downcase}s/#{current_user.id}/auditions/new", class:"btn btn-outline-primary btn-block w-50" %>
 </div>
 
