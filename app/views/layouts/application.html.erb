@@ -21,7 +21,7 @@
               <%= link_to  "Sign Up", '/signup', class:"nav-item nav-link" %>
             <% end %>  
             <% if current_user %>
-              <%= link_to  "Home", "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile", class:"nav-item nav-link" %>
+              <%= home_link %>
               <%= my_auditions_link%>
               <%= link_to "Actors", actors_path, class:"nav-item nav-link" %>
               <%= link_to  "Directors", directors_path, class:"nav-item nav-link" %>

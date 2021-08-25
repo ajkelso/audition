@@ -13,4 +13,12 @@ module ApplicationHelper
         end
     end
 
+    def home_link
+        if current_user_model == Actor
+            link_to  "Home", "/actors/#{current_user.id}/profile", class:"nav-item nav-link"
+        else
+            link_to  "Home", "/#{current_user_model.to_s.downcase}s/#{current_user.id}/projects", class:"nav-item nav-link"
+        end
+    end
+
 end
