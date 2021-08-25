@@ -1,6 +1,8 @@
 <% if (@director || @casting) %>
+    <% if @projects.length != 0 %>
+        <h1 class="text-center">Your Projects</h1>
+    <% end %>
     
-    <h1 class= "text-center">Your Projects</h1>
     <div class=" row d-flex justify-content-center">
         <%@projects.each do |project|%>
             <div class="col-3 border rounded m-1 <%=project.medium%>">
