@@ -6,3 +6,15 @@
     cursor: pointer;
     background-color: rgb(171, 247, 250);
 }
+
+.TV {
+    background-color: #4D6CFA;
+}
+
+.Film {
+    background-color: #F038FF;
+}
+
+.Theater {
+    background-color: #70E4EF;
+}

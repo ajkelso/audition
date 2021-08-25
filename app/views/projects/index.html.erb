@@ -3,7 +3,7 @@
     <h1 class= "text-center">Your Projects</h1>
     <div class=" row d-flex justify-content-center">
         <%@projects.each do |project|%>
-            <div class="col-3 border rounded m-1">
+            <div class="col-3 border rounded m-1 <%=project.medium%>">
                 <h3><%=project.title%>(<%=project.medium %>)</h3>
                 <% if @casting %>
                     <p>Director: <%=project.director.name %></p>
@@ -14,7 +14,7 @@
                 <% if project.seeking %>
                     <p>*Currently Casting</p>
                 <% end %>
-                <p><%= link_to  "Edit", edit_project_path(project), class:"text-decoration-none"%> <%= link_to  "Delete", project_path(project), method: "delete", class:"text-decoration-none" %></p>
+                <p><%= link_to  "Edit", edit_project_path(project), class:"btn btn-light"%> <%= link_to  "Delete", project_path(project), method: "delete", class:"btn btn-light" %></p>
             </div>
         <% end %>
     </div>
@@ -34,12 +34,12 @@
     <h2 class= "container text-center">Projects Currently Casting</h2>
     <div class="row d-flex justify-content-center">
         <%@projects.each do |project|%>
-            <div class="col-3 border rounded m-1">
+            <div class="col-3 border rounded m-1 <%=project.medium%>">
                 <h3><%=project.title%>(<%=project.medium %>)</h3>
                 <p>Director: <%=project.director.name %></p>
                 <p>Casting Director: <%=project.casting.name%></p>
                 <% if project_creative?(project) %>
-                    <%= link_to  "Edit", edit_project_path(project), class:"text-decoration-none"%> <%= link_to  "Delete", project_path(project), method: "delete", class:"text-decoration-none" %></p>
+                    <%= link_to  "Edit", edit_project_path(project), class:"btn btn-light"%> <%= link_to  "Delete", project_path(project), method: "delete", class:"btn btn-light" %></p>
                 <% end %>
             </div>
         <% end %>
