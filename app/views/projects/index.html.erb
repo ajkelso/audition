@@ -1,23 +1,22 @@
 <% if (@director || @casting) %>
     
     <h1 class= "text-center">Your Projects</h1>
-    <div class="d-flex justify-content-center">
-        <ul>
+    <div class=" row d-flex justify-content-center">
         <%@projects.each do |project|%>
-            <li><h3><%=project.title%>(<%=project.medium %>)</h3>
-            <% if @casting %>
-                <p>Director: <%=project.director.name %></p>
-            <% end %>
-            <% if @director %>
-                <p>Casting Director: <%=project.casting.name%></p>  
-            <% end %>
-            <% if project.seeking %>
-                <p>*Currently Casting</p>
-            <% end %>
-            <p><%= link_to  "Edit", edit_project_path(project), class:"text-decoration-none"%> <%= link_to  "Delete", project_path(project), method: "delete", class:"text-decoration-none" %></p>
-            </li>
+            <div class="col-3 border rounded m-1">
+                <h3><%=project.title%>(<%=project.medium %>)</h3>
+                <% if @casting %>
+                    <p>Director: <%=project.director.name %></p>
+                <% end %>
+                <% if @director %>
+                    <p>Casting Director: <%=project.casting.name%></p>  
+                <% end %>
+                <% if project.seeking %>
+                    <p>*Currently Casting</p>
+                <% end %>
+                <p><%= link_to  "Edit", edit_project_path(project), class:"text-decoration-none"%> <%= link_to  "Delete", project_path(project), method: "delete", class:"text-decoration-none" %></p>
+            </div>
         <% end %>
-        </ul>
     </div>
     <h4 class= "container text-center">Add a new Project:</h4>
     <%= render  "form" %>
@@ -33,18 +32,17 @@
     </div>
 
     <h2 class= "container text-center">Projects Currently Casting</h2>
-    <div class="d-flex justify-content-center">
-        <ul>
+    <div class="row d-flex justify-content-center">
         <%@projects.each do |project|%>
-            <li><h3><%=project.title%>(<%=project.medium %>)</h3>
-            <p>Director: <%=project.director.name %></p>
-            <p>Casting Director: <%=project.casting.name%></p>
-            <% if project_creative?(project) %>
-                <%= link_to  "Edit", edit_project_path(project), class:"text-decoration-none"%> <%= link_to  "Delete", project_path(project), method: "delete", class:"text-decoration-none" %></p>
-            <% end %>
-            </li>
+            <div class="col-3 border rounded m-1">
+                <h3><%=project.title%>(<%=project.medium %>)</h3>
+                <p>Director: <%=project.director.name %></p>
+                <p>Casting Director: <%=project.casting.name%></p>
+                <% if project_creative?(project) %>
+                    <%= link_to  "Edit", edit_project_path(project), class:"text-decoration-none"%> <%= link_to  "Delete", project_path(project), method: "delete", class:"text-decoration-none" %></p>
+                <% end %>
+            </div>
         <% end %>
-        </ul>
     </div>
 
 <% end %>
