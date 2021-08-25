@@ -4,4 +4,5 @@
 
 .audition-card:hover {
     cursor: pointer;
+    background-color: rgb(171, 247, 250);
 }
