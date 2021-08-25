@@ -4,4 +4,5 @@
 
 <div class="container text-center">
     <h3>You have tracked <%=link_to pluralize(@actor.auditions.count, 'audition'), actor_auditions_path(@actor), class:"text-decoration-none"%>.</h3>
+    <%= pie_chart @actor.projects.group(:medium).count %>
 </div>
