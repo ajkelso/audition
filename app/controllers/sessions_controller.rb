@@ -22,6 +22,7 @@ class SessionsController < ApplicationController
     end
 
     def create_user
+        byebug
         signed_in?
         @user = params[:user_type].constantize.new(session_params)
         if @user.save

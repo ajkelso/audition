@@ -6,7 +6,7 @@
         </div>
         <br>
         <div class="form-group">
-            <%= f.submit "Sign up with Google", class:"form-control"%>
+            <%= f.submit "Sign up with Google", class:"form-control btn btn-primary"%>
         </div>
 
     <% end %>
@@ -39,7 +39,7 @@
 
         <div class="form-group">
             <%= f.label :password, "Password:" %>
-            <%= f.text_field :password, class:"form-control" %>
+            <%= f.password_field :password, class:"form-control" %>
         </div>
 
         <div class="form-group">
@@ -49,7 +49,7 @@
         <br>
 
         <div class="actions">
-            <%= f.submit "Sign up", class:"form-control bg-light"%>
+            <%= f.submit "Sign up", class:"form-control btn btn-outline-secondary"%>
         </div>
     <% end %>
 </div>
