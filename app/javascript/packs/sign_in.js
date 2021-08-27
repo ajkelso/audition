@@ -1,3 +1,5 @@
 const userTypeInput = document.getElementById("user-type")
 
-console.log(userTypeInput.type)
+userTypeInput.addEventListener('change', () => console.log(userTypeInput.value))
+
+console.log("here")
