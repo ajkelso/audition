@@ -2,7 +2,7 @@
     <%= form_with url: "/google_signup", class:"w-25" do |f|%>
         <div class="form-group">
             <%= f.label :type, "Sign in as an:" %>
-            <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]), class:"form-control", id:"user-type")%>
+            <%= select_tag(:user_type, options_for_select([["Please Select...", ""], ['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]), class:"form-control", id:"user-type")%>
         </div>
         <br>
         <div class="form-group">
@@ -16,10 +16,7 @@
 <div class="d-flex justify-content-center">
     <%= form_with(url: "/sessions", method: "post", class:"w-25") do %>
         
-        <div class="form-group">
-            <%=label_tag(:user_type, "Sign in as:")%>
-            <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]), class:"form-control")%>
-        </div>
+        <%= hidden_field_tag :user_type, "", class: "hidden-user-type" %>
         
         <div class="form-group">
             <%=label_tag :email, "Email Address:"%>
@@ -37,3 +34,4 @@
         
     <% end %>
 </div>
+<%= javascript_pack_tag 'custom/sign_in' %>

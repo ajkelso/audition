@@ -16,12 +16,9 @@
 
 <div class="d-flex justify-content-center">
     <%= form_with url: '/signup', class:"w-25" do |f|%> 
+        
         <%= f.hidden_field :user_type, value: "", class:"hidden-user-type" %>
-        <%# <div class="form-group">
-            <%=label_tag(:user_type, "Sign up as:")%>
-            <%# <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]), class:"form-control")%>
-        <%# </div> %>
-
+        
         <div class="form-group">
             <%= f.label :name, "Name:" %>
             <%= f.text_field :name, class:"form-control" %>
