@@ -5,6 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+puts "Seeding..."
+
+Actor.destroy_all
+Director.destroy_all
+Casting.destroy_all
+Project.destroy_all
+
 actor1 = Actor.create(name: "Tom Hanks", email: 'hanx@hanx.com', phone_number: 5558675301, password: "pw")
 actor2 = Actor.create(name: "Meryl Streep", email: 'meryl@streep.com', phone_number: 5558675302, password: "pw")
 actor3 = Actor.create(name: "Brad Pitt", email: 'brad@pitt.com', phone_number: 5558675303, password: "pw")
@@ -17,3 +24,5 @@ casting3 = Casting.create(name: "Tara Rubin", email: "tara@rubin.com", phone_num
 project1 = Project.create(title: "Home Alone", medium: "Theater", director_id: 1, casting_id: 1)
 project2 = Project.create(title: "Flatiron", medium: "TV", director_id: 2, casting_id: 2)
 project3 = Project.create(title: "Star Wars 17", medium: "Film", director_id: 3, casting_id: 3, seeking: false)
+
+puts "Seeding Complete!"
