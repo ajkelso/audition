@@ -7,3 +7,4 @@ const handleClick = (id) => {
 auditionsCards.forEach(card => {
     card.addEventListener("click", () => handleClick(card.getAttribute("audition_id")))
 })
+console.log("loaded")
