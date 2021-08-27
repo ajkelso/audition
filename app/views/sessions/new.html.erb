@@ -1,8 +1,8 @@
 <div class="d-flex justify-content-center">
     <%= form_with url: "/google_signup", class:"w-25" do |f|%>
         <div class="form-group">
-            <%= f.label :type, "Sign in with Google as an:" %>
-            <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]), class:"form-control")%>
+            <%= f.label :type, "Sign in as an:" %>
+            <%= select_tag(:user_type, options_for_select([['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]), class:"form-control", id:"user-type")%>
         </div>
         <br>
         <div class="form-group">
