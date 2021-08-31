@@ -58,7 +58,7 @@ class ProjectsController < ApplicationController
                 redirect_to root_path
             end
         else
-            @projects = Project.get_seeking    
+            @projects = Project.get_seeking.order(:title)   
         end
     end
 
