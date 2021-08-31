@@ -3,7 +3,7 @@ class ActorsController < ApplicationController
     before_action :allowed?, only: [:edit, :update, :profile]
 
     def index
-        @actors = Actor.all 
+        @actors = Actor.order(:name) 
     end
     
     def show
