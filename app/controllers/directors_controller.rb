@@ -3,7 +3,7 @@ class DirectorsController < ApplicationController
     before_action :allowed?, only: [:edit, :update, :profile]
 
     def index
-        @directors = Director.all 
+        @directors = Director.order(:name) 
     end
     
     def show
