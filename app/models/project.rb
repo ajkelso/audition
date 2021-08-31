@@ -9,7 +9,7 @@ class Project < ApplicationRecord
     scope :get_seeking, -> {where('seeking = ?', true)}
 
     def self.get_director_projects(query)
-        Project.joins(:director).where("name = ?", query)
+        Project.joins(:director).where("name = ?", query).order(:title)
     end
 end
 

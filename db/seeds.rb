@@ -21,8 +21,8 @@ director3 = Director.create(name: "Alfred Hitchcock", email: 'al@hitch.com', pho
 casting1 = Casting.create(name: "Bernie Telsey", email: 'bern@tels.com', phone_number: 5558675307, password: "pw")
 casting2 = Casting.create(name: "Alison Estrin", email: 'ally@est.com', phone_number: 5558675308, password: "pw")
 casting3 = Casting.create(name: "Tara Rubin", email: "tara@rubin.com", phone_number: 3452453567, password: "pw")
-project1 = Project.create(title: "Home Alone", medium: "Theater", director_id: 1, casting_id: 1)
-project2 = Project.create(title: "Flatiron", medium: "TV", director_id: 2, casting_id: 2)
-project3 = Project.create(title: "Star Wars 17", medium: "Film", director_id: 3, casting_id: 3, seeking: false)
+project1 = Project.create(title: "Home Alone", medium: "Theater", director_id: director1.id, casting_id: casting1.id)
+project2 = Project.create(title: "Flatiron", medium: "TV", director_id: director2.id, casting_id: casting2.id)
+project3 = Project.create(title: "Star Wars 17", medium: "Film", director_id: director3.id, casting_id: casting3.id, seeking: false)
 
 puts "Seeding Complete!"
