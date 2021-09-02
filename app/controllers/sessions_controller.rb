@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
         @user = params[:user_type].constantize.find_by(email: params[:email])
         if @user && @user.authenticate(params[:password])
             session["#{params[:user_type].downcase}_id".to_sym] = @user.id
-            byebug
             redirect_to profile
         else
             flash[:error] = "Invalid email address or password"

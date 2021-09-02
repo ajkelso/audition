@@ -2,7 +2,7 @@
     <%= form_with url: "/google_signup", class:"w-25" do |f|%>
         <div class="form-group">
             <%= f.label :type, "Sign in as an:" %>
-            <%= select_tag(:user_type, options_for_select([["Please Select...", ""], ['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]), class:"form-control", id:"user-type")%>
+            <%= select_tag(:user_type, options_for_select([["Please Select...", ""], ['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]), class:"form-control", id:"user-type", :required => true) %>
         </div>
         <br>
         <div class="form-group">
@@ -29,7 +29,7 @@
         </div>
     <br>
         <div class="form-group">
-            <%=submit_tag "Sign In", class:"form-control btn btn-outline-secondary" %>
+            <%=submit_tag "Sign In", class:"form-control btn btn-outline-secondary sign-in" %>
         </div>
         
     <% end %>
