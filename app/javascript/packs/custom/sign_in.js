@@ -16,8 +16,6 @@ const checkSelection = (e) => {
         console.log(errorDiv)
         errorDiv.innerHTML = "Please Select User Type";
         form.insertBefore(errorDiv, userSelect)
-        // selectError.appendChild(errorDiv)
-        console.log("BOOM")
     }
 }
 
