@@ -33,20 +33,22 @@
         </div>
       </nav>
     </header>
-    <% if !!flash[:error]%>
-      <div class="text-center text-white bg-danger">
-          <h5><%= flash[:error] %></h5>
+      <div id="error">
+        <% if !!flash[:error]%>
+          <div class="text-center text-white bg-danger">
+              <h5><%= flash[:error] %></h5>
+          </div>
+        <% end %>
+        <% if !!flash[:errors]%>
+          <div class="d-flex justify-content-center text-white bg-danger">
+            <ul>
+              <% flash[:errors].each do |m|%>
+                <h3><li><%= m %></li></h3>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-    <% if !!flash[:errors]%>
-      <div class="d-flex justify-content-center text-white bg-danger">
-        <ul>
-          <% flash[:errors].each do |m|%>
-            <h3><li><%= m %></li></h3>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
     <%= yield %>
     <%= javascript_pack_tag 'custom/audition_index' %>
   </body>
