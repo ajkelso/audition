@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
         @user = params[:user_type].constantize.find_by(email: params[:email])
         if @user && @user.authenticate(params[:password])
             session["#{params[:user_type].downcase}_id".to_sym] = @user.id
+            byebug
             redirect_to profile
         else
             flash[:error] = "Invalid email address or password"
@@ -46,7 +47,7 @@ class SessionsController < ApplicationController
             user.password = SecureRandom.hex
         end
         session["#{session[:user_type].downcase}_id".to_sym] = @user.id
-        profile_redirect
+        redirect_to profile
     end
 
     def destroy
@@ -58,15 +59,5 @@ class SessionsController < ApplicationController
 
     def session_params
         params.permit(:name, :email, :phone_number, :password, :password_confirmation)
-    end
-
-    def profile_redirect
-        if current_user_model == Actor 
-            redirect_to actor_profile_path(@user)
-        elsif current_user_model == Director 
-            redirect_to director_profile_path(@user)
-        elsif current_user_model == Casting 
-            redirect_to casting_profile_path(@user)
-        end
     end
 end
