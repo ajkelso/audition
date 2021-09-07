@@ -1,37 +1,41 @@
-<div class="d-flex justify-content-center">
-    <%= form_with url: "/google_signup", class:"w-25 google-form" do |f|%>
-        <div class="form-group user-select">
-            <%= f.label :type, "Sign in as an:" %>
-            <%= select_tag(:user_type, options_for_select([["Please Select...", ""], ['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]), class:"form-control", id:"user-type", :required => true) %>
-        </div>
-        <br>
-        <div class="form-group">
-            <%= f.submit "Sign in with Google", class:"form-control btn btn-primary"%>
-        </div>
-    <% end %>
-</div>
-
-    <div class="container text-center"><p>-Or- </p></div>
-
-<div class="d-flex justify-content-center">
-    <%= form_with(url: "/sessions", method: "post", class:"w-25") do %>
-        
-        <%= hidden_field_tag :user_type, "", class: "hidden-user-type" %>
-        
-        <div class="form-group">
-            <%=label_tag :email, "Email Address:"%>
-            <%=text_field_tag :email, "", class:"form-control" %>
+<div class="conatiner">
+    <div class="row">
+        <div class="d-flex justify-content-center col-6">
+            <%= form_with url: "/google_signup", class:"google-form" do |f|%>
+                <div class="form-group user-select">
+                    <%= f.label :type, "Sign in as an:" %>
+                    <%= select_tag(:user_type, options_for_select([["Please Select...", ""], ['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]), class:"form-control", id:"user-type", :required => true) %>
+                </div>
+                <br>
+                <div class="form-group">
+                    <%= f.submit "Sign in with Google", class:"form-control btn btn-primary"%>
+                </div>
+            <% end %>
         </div>
 
-        <div class="form-group">
-            <%=label_tag(:password, "Password:")%>
-            <%=password_field_tag :password, "", class:"form-control"%>
+            <%# <div class="container text-center"><p>-Or- </p></div> %>
+
+        <div class="d-flex justify-content-center col-6">
+            <%= form_with(url: "/sessions", method: "post") do %>
+                
+                <%= hidden_field_tag :user_type, "", class: "hidden-user-type" %>
+                
+                <div class="form-group">
+                    <%=label_tag :email, "Email Address:"%>
+                    <%=text_field_tag :email, "", class:"form-control" %>
+                </div>
+
+                <div class="form-group">
+                    <%=label_tag(:password, "Password:")%>
+                    <%=password_field_tag :password, "", class:"form-control"%>
+                </div>
+            <br>
+                <div class="form-group">
+                    <%=submit_tag "Sign In", class:"form-control btn btn-outline-secondary sign-in" %>
+                </div>
+                
+            <% end %>
         </div>
-    <br>
-        <div class="form-group">
-            <%=submit_tag "Sign In", class:"form-control btn btn-outline-secondary sign-in" %>
-        </div>
-        
-    <% end %>
+    </div>
 </div>
 <%= javascript_pack_tag 'custom/sign_in' %>
