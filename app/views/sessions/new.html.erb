@@ -5,7 +5,7 @@
                     <%= select_tag(:user_type, options_for_select([["Please Select...", ""], ['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]), class:"form-control", id:"user-type", :required => true) %>
                 </div>
     <div class="row">
-        <div class="d-flex justify-content-center col-6">
+        <div class="d-flex justify-content-end align-items-center col-6">
                 <br>
                 <div class="form-group">
                     <%= f.submit "Sign in with Google", class:"form-control btn btn-primary"%>
@@ -15,7 +15,7 @@
 
             <%# <div class="container text-center"><p>-Or- </p></div> %>
 
-        <div class="d-flex justify-content-center col-6">
+        <div class="d-flex justify-content-start col-6">
             <%= form_with(url: "/sessions", method: "post") do %>
                 
                 <%= hidden_field_tag :user_type, "", class: "hidden-user-type" %>
