@@ -1,11 +1,11 @@
 <div class="conatiner">
-    <div class="row">
-        <div class="d-flex justify-content-center col-6">
             <%= form_with url: "/google_signup", class:"google-form" do |f|%>
-                <div class="form-group user-select">
+                <div class="form-group user-select w-50 mx-auto justify-content-center">
                     <%= f.label :type, "Sign in as an:" %>
                     <%= select_tag(:user_type, options_for_select([["Please Select...", ""], ['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]), class:"form-control", id:"user-type", :required => true) %>
                 </div>
+    <div class="row">
+        <div class="d-flex justify-content-center col-6">
                 <br>
                 <div class="form-group">
                     <%= f.submit "Sign in with Google", class:"form-control btn btn-primary"%>
