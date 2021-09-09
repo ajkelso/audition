@@ -4,11 +4,7 @@
 <div class="d-flex justify-content-center">
     <div class="w-50">
         <% if !creative? %>
-                <div class="list-group">
-                    <% @actors.each do |actor|%>
-                        <%= link_to actor.name, actor_path(actor), class:"list-group-item list-group-item-action text-center"%>
-                    <% end %>
-                </div>
+            <%= render "shared/index", contacts: @actors %>
         <% else %>
                 <div class="list-group">
                     <% @actors.each do |actor|%>

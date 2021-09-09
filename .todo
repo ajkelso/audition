@@ -6,3 +6,5 @@
 -alphabetize indexes
 
 -remove select user error after each failed attempt
+
+-mirror director/CD index to actor. Possibly partials?

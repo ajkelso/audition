@@ -1,0 +1,5 @@
+<div class="list-group">
+    <% contacts.each do |contact|%>
+        <%= link_to contact.name, "/#{contact.class.name.downcase}s/#{contact.id}", class:"list-group-item list-group-item-action text-center"%>
+    <% end %>
+</div>
