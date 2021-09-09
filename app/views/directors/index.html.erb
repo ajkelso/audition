@@ -3,16 +3,8 @@
 </div>
 
 <% if !creative? %>
-    <ul>
-    <% @directors.each do |d|%>
-        <li><%= link_to  d.name, director_path(d), class:"text-decoration-none" %>
-        <% if current_user.directors.include?(d) %>
-            *
-        <% end %>
-        </li>
-    <% end %>
-    </ul>
-    <p class="container text-center">* Indicates a Director for a Project in your tracked auditions</p>
+    <%= render  "shared/association_index", contacts: @directors %>  
+    <p class="container text-center">* Indicates a Director in your tracked auditions</p>  
 <% else %>
     <%= render "shared/index", contacts: @directors %>
 <% end %>

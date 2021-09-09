@@ -1,0 +1,11 @@
+<div class="d-flex justify-content-center">
+    <div class="w-50">
+        <div class="list-group">
+            <% contacts.each do |contact|%>
+                <a href="/<%=contact.class.name.downcase%>s/<%= contact.id %>" class="list-group-item list-group-item-action"><%= contact.name %>
+                    <%= "*" if current_user.send("#{contact.class.name.downcase}s").include?(contact)%>  
+                </a>
+            <% end %>
+        </div>
+    </div>
+</div>

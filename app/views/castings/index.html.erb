@@ -1,23 +1,8 @@
 <h2 class= "container text-center">Casting Directors</h2>
 <% if !creative? %>
-    <div class="d-flex justify-content-center">
-        <ul>
-        <% @castings.each do |cd|%>
-            <li><%= link_to  cd.name, casting_path(cd), class:"text-decoration-none" %>
-            <% if current_user.castings.include?(cd) %>
-                *
-            <% end %>
-            </li>
-        <% end %>
-        </ul>
-    </div>
-    <p class ="text-center">* Indicates a Casting Director for a Project in your tracked auditions</p>
+    <%= render  "shared/association_index", contacts: @castings %> 
+    <p class="container text-center">* Indicates a Casting Director in your tracked auditions</p>
+       
 <% else %>
-    <div class="d-flex justify-content-center">
-        <ul>
-        <%@castings.each do |cd|%>
-            <li><%= link_to  cd.name, casting_path(cd), class:"text-decoration-none" %></li>
-        <% end %>
-        </ul>
-    </div>
+    <%= render "shared/index", contacts: @castings %>
 <% end %>
