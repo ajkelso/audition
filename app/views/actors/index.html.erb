@@ -1,21 +1,17 @@
 <div class="text-center">
     <h2>Actors</h2>
 </div>
-<div class="d-flex justify-content-center">
-    <div class="w-50">
-        <% if !creative? %>
-            <%= render "shared/index", contacts: @actors %>
-        <% else %>
-                <div class="list-group">
-                    <% @actors.each do |actor|%>
-                        <a href="<%= actor_path(actor)%>" class="list-group-item list-group-item-action"><%= actor.name %>
-                            <%= "*" if current_user.actors.include?(actor)%>  
-                        </a>
-                        </li> 
-                    <% end %>
-                </div>
-            <p class="container text-center">* Indicates an auditioner in your tracked auditions</p>
-        <% end %>
-    </div>
-</div>
 
+<% if !creative? %>
+    <%= render "shared/index", contacts: @actors %>
+<% else %>
+        <div class="list-group">
+            <% @actors.each do |actor|%>
+                <a href="<%= actor_path(actor)%>" class="list-group-item list-group-item-action"><%= actor.name %>
+                    <%= "*" if current_user.actors.include?(actor)%>  
+                </a>
+                </li> 
+            <% end %>
+        </div>
+    <p class="container text-center">* Indicates an auditioner in your tracked auditions</p>
+<% end %>
