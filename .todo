@@ -6,3 +6,5 @@
 -alphabetize indexes
 
 -remove select user error after each failed attempt
+
+-if project doesn't have auditions, dont shot div border in My Auditions for directors/CDs
