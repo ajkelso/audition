@@ -6,19 +6,18 @@
         <% if !creative? %>
                 <div class="list-group">
                     <% @actors.each do |actor|%>
-                        <%= link_to  actor.name, actor_path(actor), class:"list-group-item list-group-item-action text-center" %>
+                        <%= link_to actor.name, actor_path(actor), class:"list-group-item list-group-item-action text-center"%>
                     <% end %>
                 </div>
         <% else %>
-                <ul>
+                <div class="list-group">
                     <% @actors.each do |actor|%>
-                        <li><%= link_to  actor.name, actor_path(actor) %>
-                        <% if current_user.actors.include?(actor) %>
-                            *
-                        <% end %>
+                        <a href="<%= actor_path(actor)%>" class="list-group-item list-group-item-action"><%= actor.name %>
+                            <%= "*" if current_user.actors.include?(actor)%>  
+                        </a>
                         </li> 
                     <% end %>
-                </ul>
+                </div>
             <p class="container text-center">* Indicates an auditioner in your tracked auditions</p>
         <% end %>
     </div>
