@@ -1,0 +1,25 @@
+<div class="text-center">
+    <h2> <%=  contact.name %> </h2>
+</div>
+<table class="table d-flex justify-content-center">
+   
+    <tbody>
+        <tr>
+            <th scope="row">email:</th>
+            <td> <%= contact.email %></td>
+        </tr>
+        
+        <% unless (current_user_model == Actor) && (contact.class.name == "Director" || "Casting")  %>
+            <tr>
+                <th scope="row">phone:</th>
+                <td> <%= contact.phone_number %></td>
+            </tr>
+        <% end %>
+
+        <% if projects %>
+            
+          
+        <% end %>
+
+        
+    </tbody>
