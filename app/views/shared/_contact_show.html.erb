@@ -2,7 +2,6 @@
     <h2> <%=  contact.name %> </h2>
 </div>
 <table class="table d-flex justify-content-center">
-   
     <tbody>
         <tr>
             <th scope="row">email:</th>
@@ -15,11 +14,21 @@
                 <td> <%= contact.phone_number %></td>
             </tr>
         <% end %>
+    </tbody>
+</table>
 
-        <% if projects %>
-            
-          
-        <% end %>
+<% if projects %>
+    <h5 class="text-center">Current Projects</h5>
+    <div class="d-flex justify-content-center">
+        <div class="w-25">
+            <div class="list-group">
+                <% projects.each do |project|%>
+                    <%= link_to  project.title, project_path(project), class: "list-group-item list-group-item-action text-center" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+<% end %>
 
         
-    </tbody>
+    

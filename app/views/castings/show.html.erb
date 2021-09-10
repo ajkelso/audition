@@ -1,22 +1,5 @@
-<div class="text-center">
-    <h2><strong>Name:</strong> <%= @casting.name %></h2>
-    <p><strong>Email:</strong> <%= @casting.email %></p>
-    <% unless current_user_model == Actor %>
-        <p><strong>Phone Number:</strong>  <%= @casting.phone_number %></p>
-    <% end %>
-    <p><strong>Current Projects:</strong></p>
-    <% if @projects %>
-        <div class="d-flex justify-content-center">
-            <ul>
-                <% @projects.each do |project|%>
-                    <li><%=link_to project.title, project_path(project), class:"text-decoration-none" %></li>  
-                <% end %>
-            </ul>
-        </div>
-    <% else %>
-        <p>No projects to show</p>
-    <% end %>
-</div>
+
+<%= render  "/shared/contact_show", contact: @casting, projects: nil || @projects %>
 
 <% if owner? %>
     <div class="container text-center">
@@ -24,4 +7,3 @@
     </div>
 <% end %>
 
-<%= render  "/shared/contact_show", contact: @casting %>
