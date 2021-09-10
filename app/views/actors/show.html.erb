@@ -1,8 +1,5 @@
-<div class="text-center">
-    <h2><%= @actor.name %></h2>
-    <p><strong>Email:</strong> <%= @actor.email %></p>
-    <p><strong>Phone Number:</strong>  <%= @actor.phone_number %></p>
-</div>
+<%= render  "/shared/contact_show", contact: @actor, projects: nil || @projects %>
+
 
 <% if owner? %>
     <div class="text-center">

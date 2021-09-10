@@ -8,7 +8,7 @@
             <td> <%= contact.email %></td>
         </tr>
         
-        <% unless (current_user_model == Actor) && (contact.class.name == "Director" || "Casting")  %>
+        <% unless (current_user_model == Actor) && (contact.class.name == "Director" || contact.class.name == "Casting") %>
             <tr>
                 <th scope="row">phone:</th>
                 <td> <%= contact.phone_number %></td>
