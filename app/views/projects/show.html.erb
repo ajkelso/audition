@@ -1,13 +1,35 @@
-<div class= "text-center">
-  <h2><%=@project.title %></h2>
-  <p><strong>Director:</strong> <%=link_to @project.director.name, director_path(@project.director), class:"text-decoration-none"%></p>
-  <p><strong>Casting Director:</strong> <%=link_to @project.casting.name, casting_path(@project.casting), class:"text-decoration-none"%></p>
-  <% if @project.seeking %>
-          <strong>Currently Casting</strong>
-      <% else %>
-          <strong>Not Currently Casting</strong>
-  <% end %>
+<div class="container">
+  <div class="text-center">
+      <h2> <%=  @project.title %> </h2>
+  </div>
+  <table class="table d-flex justify-content-center">
+      <tbody>
+          <tr>
+              <th scope="row">Director:</th>
+              <td> <%= @project.director.name %></td>
+          </tr>
+          
+          <tr>
+              <th scope="row">Casting Director:</th>
+              <td> <%= @project.casting.name %></td>
+          </tr>
+          
+          <tr class=<%= @project.medium %>>
+              <th scope="row">Type:</th>
+              <td> <%= @project.medium %></td>
+          </tr>
+      </tbody>
+  </table>
+  <div class="text-center">
+    <% if @project.seeking %>
+      <strong>Currently Casting</strong>
+    <% else %>
+      <strong>Not Currently Casting</strong>
+    <% end %>
+  </div>
   <% if project_creative?(@project) %>
-    <%= link_to  "Edit", edit_project_path(@project), class:"text-decoration-none"%> <%= link_to  "Delete", project_path(@project), method: "delete", class:"text-decoration-none"%></p>
+    <div class="d-flex justify-content-center">
+      <%= link_to  "Edit", edit_project_path(@project), class:"btn btn-outline-info"%> <%= link_to  "Delete", project_path(@project), method: "delete", class:"btn btn-outline-info"%></p>
+    </div>
   <% end %>
 </div>
