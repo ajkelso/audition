@@ -10,25 +10,27 @@
             <%=proj.text_field :medium, class:"form-control" %>
         </div>
 
-            <% if current_user_model == Director %>
-        <div class="form-group">
+        <% if current_user_model == Director %>
+            <div class="form-group">
                 <%=proj.label :casting, "Casting Director:" %>
                 <%=proj.select :casting_id, options_from_collection_for_select(Casting.all, :id, :name), {}, class:"form control form-select" %>
-        </div>
-                <%=proj.hidden_field :director_id, value: current_user.id %>
-            <% elsif current_user_model == Casting %>
+            </div>
+            <%=proj.hidden_field :director_id, value: current_user.id %>
+        <% elsif current_user_model == Casting %>
+            <div class="form-group">
                 <%=proj.label :director, "Director:"%>
-                <%=proj.select :director_id, options_from_collection_for_select(Director.all, :id, :name), class:"form-control" %>  
+                <%=proj.select :director_id, options_from_collection_for_select(Director.all, :id, :name), {}, class:"form control form-select" %>  
                 <%=proj.hidden_field :casting_id, value: current_user.id %>
-            <% end %>
+            </div>
+        <% end %>
 
         <div class="form-group">
-            <%=proj.label :seeking, "Currently Casting?"%>
             <%=proj.check_box :seeking %>
+            <%=proj.label :seeking, "Currently Casting"%>
         </div>
 
         <div class="form-group">
-            <%=proj.submit %> 
+            <%=proj.submit class:"btn btn-outline-primary w-100"%> 
         </div>
     <% end %>
 </div>
