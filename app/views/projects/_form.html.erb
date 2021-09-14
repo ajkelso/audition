@@ -12,8 +12,8 @@
 
             <% if current_user_model == Director %>
         <div class="form-group">
-                <%=proj.label :casting, "Casting Director:"%>
-                <%=proj.select :casting_id, options_from_collection_for_select(Casting.all, :id, :name), class:"form-control" %>
+                <%=proj.label :casting, "Casting Director:" %>
+                <%=proj.select :casting_id, options_from_collection_for_select(Casting.all, :id, :name), {}, class:"form control form-select" %>
         </div>
                 <%=proj.hidden_field :director_id, value: current_user.id %>
             <% elsif current_user_model == Casting %>

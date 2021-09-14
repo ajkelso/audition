@@ -22,9 +22,9 @@
     </div>
     <h4 class= "container text-center">Add a new Project:</h4>
     <%= render  "form" %>
-    
 
 <% else %>
+
     <div class="d-flex justify-content-center">
         <%=form_with url: "/search", method: :get, local: true do |f|%>
             <%= f.label :director_name, "Search for Projects by Director:" %>
