@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
                 redirect_to new_session_path
             end
         else
-            flash[:error] = "Please Choose a User Type"
+            flash[:user_type_error] = "Please Choose a User Type"
             redirect_to new_session_path
         end
     end

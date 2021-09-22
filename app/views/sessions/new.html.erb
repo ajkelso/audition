@@ -2,6 +2,11 @@
             <%= form_with url: "/google_signup", class:"google-form" do |f|%>
                 <div class="form-group user-select w-25 mx-auto justify-content-center text-center">
                     <%= f.label :type, "Sign in as:"%>
+                    <% if !!flash[:user_type_error] %>
+                        <div class="text-center text-white bg-danger">
+                            <h5><%= flash[:user_type_error] %></h5>
+                        </div>
+                    <% end %> 
                     <%= select_tag(:user_type, options_for_select([["Please Select...", ""], ['Actor', 'Actor'], ['Director', 'Director'], ['Casting Director', 'Casting']]), class:"form-control", id:"user-type", :required => true) %>
                 </div>
     <div class="row">
