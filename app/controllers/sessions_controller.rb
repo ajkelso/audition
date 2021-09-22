@@ -8,19 +8,13 @@ class SessionsController < ApplicationController
     end
 
     def create
-        # check_user_type
-        # if params[:user_type] != ""
-            if @user && @user.authenticate(params[:password])
-                session["#{params[:user_type].downcase}_id".to_sym] = @user.id
-                redirect_to profile
-            else
-                flash[:error] = "Invalid email address or password"
-                redirect_to new_session_path
-            end
-        # else
-        #     flash[:user_type_error] = "Please Choose a User Type"
-        #     redirect_to new_session_path
-        # end
+        if @user && @user.authenticate(params[:password])
+            session["#{params[:user_type].downcase}_id".to_sym] = @user.id
+            redirect_to profile
+        else
+            flash[:error] = "Invalid email address or password"
+            redirect_to new_session_path
+        end
     end
 
     def signup
@@ -29,7 +23,6 @@ class SessionsController < ApplicationController
 
     def create_user
         signed_in?
-        check_user_type
         @user = params[:user_type].constantize.new(session_params)
         if @user.save
             session["#{params[:user_type].downcase}_id".to_sym] = @user.id
@@ -41,7 +34,6 @@ class SessionsController < ApplicationController
     end
     
     def google_signup
-        check_user_type
         session[:user_type] = params[:user_type]
         redirect_to '/auth/google_oauth2'
     end
@@ -69,7 +61,6 @@ class SessionsController < ApplicationController
     end
 
     def check_user_type
-        byebug
         if params[:user_type] == ""
             flash[:user_type_error] = "Please Choose a User Type"
             return redirect_back(fallback_location: new_session_path)
