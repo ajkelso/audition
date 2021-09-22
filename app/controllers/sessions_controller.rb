@@ -1,13 +1,15 @@
 class SessionsController < ApplicationController
     
     skip_before_action :verified_user, only: [:new, :create, :google_login, :signup, :google_signup, :create_user]
+    before_action :check_user_type, only: [:create, :create_user, :google_signup]
     
     def new
         signed_in?
     end
 
     def create
-        if params[:user_type] != ""
+        # check_user_type
+        # if params[:user_type] != ""
             if @user && @user.authenticate(params[:password])
                 session["#{params[:user_type].downcase}_id".to_sym] = @user.id
                 redirect_to profile
@@ -15,10 +17,10 @@ class SessionsController < ApplicationController
                 flash[:error] = "Invalid email address or password"
                 redirect_to new_session_path
             end
-        else
-            flash[:user_type_error] = "Please Choose a User Type"
-            redirect_to new_session_path
-        end
+        # else
+        #     flash[:user_type_error] = "Please Choose a User Type"
+        #     redirect_to new_session_path
+        # end
     end
 
     def signup
@@ -36,7 +38,6 @@ class SessionsController < ApplicationController
             flash.now[:errors] = @user.errors.full_messages
             render :signup
         end    
-         
     end
     
     def google_signup
@@ -68,9 +69,10 @@ class SessionsController < ApplicationController
     end
 
     def check_user_type
+        byebug
         if params[:user_type] == ""
             flash[:user_type_error] = "Please Choose a User Type"
-            redirect_to new_session_path
+            return redirect_back(fallback_location: new_session_path)
         end
     end
 end
