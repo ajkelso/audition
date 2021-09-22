@@ -7,12 +7,16 @@ class SessionsController < ApplicationController
     end
 
     def create
-        @user = params[:user_type].constantize.find_by(email: params[:email])
-        if @user && @user.authenticate(params[:password])
-            session["#{params[:user_type].downcase}_id".to_sym] = @user.id
-            redirect_to profile
+        if params[:user_type] != ""
+            if @user && @user.authenticate(params[:password])
+                session["#{params[:user_type].downcase}_id".to_sym] = @user.id
+                redirect_to profile
+            else
+                flash[:error] = "Invalid email address or password"
+                redirect_to new_session_path
+            end
         else
-            flash[:error] = "Invalid email address or password"
+            flash[:error] = "Please Choose a User Type"
             redirect_to new_session_path
         end
     end
