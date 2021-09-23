@@ -4,3 +4,23 @@
     <p><strong>Location:</strong>  <%= @audition.location %></p>
 <% end %>
 <p><strong>Time:</strong>  <%= @audition.time.strftime("%l:%M%P %A, %B %e") %></p>
+
+<div class="text-center">
+    <h2> <%=  @audition.project.title %> </h2>
+</div>
+<table class="table d-flex justify-content-center">
+    <tbody>
+    <% if @audition.location %>
+        <tr>
+            <th scope="row">Location:</th>
+            <td> <%= @audition.location %></td>
+        </tr>
+    <% end %>
+
+        <tr>
+            <th scope="row">Time:</th>
+            <td> <%= @audition.time.strftime("%l:%M%P %A, %B %e") %></td>
+        </tr>
+
+    </tbody>
+</table>

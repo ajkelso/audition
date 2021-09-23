@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     end
 
     def create
+        @user = params[:user_type].constantize.find_by(email: params[:email])
         if @user && @user.authenticate(params[:password])
             session["#{params[:user_type].downcase}_id".to_sym] = @user.id
             redirect_to profile
@@ -61,6 +62,7 @@ class SessionsController < ApplicationController
     end
 
     def check_user_type
+        byebug
         if params[:user_type] == ""
             flash[:user_type_error] = "Please Choose a User Type"
             return redirect_back(fallback_location: new_session_path)
