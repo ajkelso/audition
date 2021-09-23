@@ -13,12 +13,12 @@
     <% if @notes %>
         <div class="d-flex justify-content-center"><h4>Notes:</h4></div>
         <div class="d-flex justify-content-center">
-            <ul>
+            <div class="list-group list-group-flush">
             <% @notes.each do |n| %>  
-                <li><%= n.content%> <br>
+                <li class="list-group-item text-center"><%= n.content%> <br>
                 <%= link_to  "Edit", edit_audition_note_path(@audition, n), class:"text-decoration-none" %> <%= link_to  "Delete", audition_note_path(@audition, n), method: "delete", class:"text-decoration-none" %></li>
             <% end %>
-            </ul>  
+            </div>  
         </div>
     <% end %>
 
