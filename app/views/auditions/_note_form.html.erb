@@ -1,0 +1,14 @@
+<div class="d-flex justify-content-center">
+    <%=form_with model: @note, url: [@audition, @note] do |note|%>
+        <div class="form-group">
+            <%=note.label "Notes: ", hidden:"true" %>
+            <%=note.text_area :content, class:"form-control", placeholder:"Add note..." %> 
+        </div>
+        <%=note.hidden_field :audition_id, value: @audition.id%>
+        <%=note.hidden_field :notable_id, value: current_user.id%>
+        <%=note.hidden_field :notable_type, value: current_user.class%>
+        <div class="form-group">
+            <%=note.submit class:"btn btn-outline-primary btn-block w-100"%> <br>  
+        </div> 
+    <% end %>
+</div>
