@@ -62,7 +62,6 @@ class SessionsController < ApplicationController
     end
 
     def check_user_type
-        byebug
         if params[:user_type] == ""
             flash[:user_type_error] = "Please Choose a User Type"
             return redirect_back(fallback_location: new_session_path)
