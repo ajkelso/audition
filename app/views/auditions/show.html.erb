@@ -1,4 +1,4 @@
-<div class="w-50 mx-auto border rounded">
+<div class="w-50 mx-auto">
     <div class="container text-center">
         
         <%= render  "auditions/show"%>
@@ -13,16 +13,14 @@
     <% if @notes %>
         <div class="d-flex justify-content-center"><h4>Notes:</h4></div>
         <div class="d-flex justify-content-center">
-            <div class="list-group list-group-flush">
+            <div class="list-group">
             <% @notes.each do |n| %>  
                 <li class="list-group-item">
-                        <strong class="text-center"><%= n.updated_at.strftime("%B %e %l:%M%P")%></strong>
-                        <br>
-                        <%= n.content %>
-                        <br>
-                    <%# <div class="text-center"> %>
-                        <small><%= link_to  "Edit", edit_audition_note_path(@audition, n), class:"text-decoration-none" %> <%= link_to  "Delete", audition_note_path(@audition, n), method: "delete", class:"text-decoration-none" %></small>
-                    <%# </div> %>
+                    <strong class="text-center"><%= n.updated_at.strftime("%B %e %l:%M%P")%></strong>
+                    <br>
+                    <%= n.content %>
+                    <br>
+                    <small><%= link_to  "Edit", edit_audition_note_path(@audition, n), class:"btn btn-sm btn-outline-secondary btn-block" %>  <%= link_to  "Delete", audition_note_path(@audition, n), method: "delete", class:"btn btn-sm btn-outline-secondary btn-block" %></small>
                 </li>
             <% end %>
             </div>  
