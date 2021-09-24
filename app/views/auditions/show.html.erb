@@ -15,8 +15,15 @@
         <div class="d-flex justify-content-center">
             <div class="list-group list-group-flush">
             <% @notes.each do |n| %>  
-                <li class="list-group-item text-center"><%= n.content%> <br>
-                <%= link_to  "Edit", edit_audition_note_path(@audition, n), class:"text-decoration-none" %> <%= link_to  "Delete", audition_note_path(@audition, n), method: "delete", class:"text-decoration-none" %></li>
+                <li class="list-group-item">
+                        <strong class="text-center"><%= n.updated_at.strftime("%B %e %l:%M%P")%></strong>
+                        <br>
+                        <%= n.content %>
+                        <br>
+                    <%# <div class="text-center"> %>
+                        <small><%= link_to  "Edit", edit_audition_note_path(@audition, n), class:"text-decoration-none" %> <%= link_to  "Delete", audition_note_path(@audition, n), method: "delete", class:"text-decoration-none" %></small>
+                    <%# </div> %>
+                </li>
             <% end %>
             </div>  
         </div>
