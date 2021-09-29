@@ -10,7 +10,6 @@
         <div class="row d-flex justify-content-center">
             <% @auditions.each do |audition|%>
                 <div audition_id=<%=audition.id%> class="audition-card col-3 border rounded m-1">
-                    <h3><%= link_to  audition.project.title, audition_path(audition), class:"text-decoration-none" %></h3>
                     <%= render  "show", :@audition => audition %>   
                 </div>
             <% end %>
