@@ -4,19 +4,25 @@
 <table class="table d-flex justify-content-center">
     <tbody>
 
-    <% if current_user_model != Actor %>
-        <tr>
-            <th scope="row">Actor:</th>
-            <td> <%= link_to @audition.actor.name, actor_path(@audition.actor), class:"text-decoration-none" %></td>
-        </tr>
-    <% end %>
+        <% if current_user_model != Actor %>
+            <tr>
+                <th scope="row">Actor:</th>
+                <td> <%= link_to @audition.actor.name, actor_path(@audition.actor), class:"text-decoration-none" %></td>
+            </tr>
+        <% else %>
+            <tr class=<%=@audition.project.medium%>>
+                <th scope="row">Type:</th>
+                <td> <%=@audition.project.medium %></td>
+            </tr>
 
-    <% if @audition.location %>
-        <tr>
-            <th scope="row">Location:</th>
-            <td> <%= @audition.location %></td>
-        </tr>
-    <% end %>
+        <% end %>
+
+        <% if @audition.location %>
+            <tr>
+                <th scope="row">Location:</th>
+                <td> <%= @audition.location %></td>
+            </tr>
+        <% end %>
 
         <tr>
             <th scope="row">Time:</th>

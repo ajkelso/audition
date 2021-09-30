@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row d-flex justify-content-center">
             <% @auditions.each do |audition|%>
-                <div audition_id=<%=audition.id%> class="audition-card col-3 border rounded m-1">
+                <div audition_id=<%=audition.id%> class="audition-card col-3 m-1">
                     <%= render  "show", :@audition => audition %>   
                 </div>
             <% end %>
