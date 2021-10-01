@@ -1,10 +1,11 @@
-<% if (@director || @casting) %>
-    <% if @projects.length != 0 %>
-        <h1 class="text-center">Your Projects</h1>
-    <% end %>
+
+<% if @projects.length != 0 %>
+    <h1 class="text-center"><%= @director || @casting ? "Your Projects" : "Projects Currently Casting"%></h1>
+<% end %>
+
 
     
-    <div class=" row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center">
         <%@projects.each do |project|%>
             <div class="col-4">
                 <div class="card">
@@ -13,25 +14,26 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush text-center">
-                            <% if @casting %>
-                                <li class=list-group-item><strong>Director: </strong><%=project.director.name%></li>
-                            <% end %>
-                            <% if @director %>
-                                <li class=list-group-item><strong>Casting Director: </strong><%=project.casting.name%></li>
-                            <% end %>
+                            <li class=list-group-item><strong>Director: </strong><%=project.director.name%></li>
+            
+                            <li class=list-group-item><strong>Casting Director: </strong><%=project.casting.name%></li>
+                            
                             <li class="list-group-item"><%= project.seeking ? "* Currently Casting" : "Not Currently Casting" %></li>
                         </ul>
-                        <p><%= link_to  "Edit", edit_project_path(project), class:"btn btn-outline-primary"%> <%= link_to  "Delete", project_path(project), method: "delete", class:"btn btn-outline-primary" %></p>
+                        <% if project_creative?(project) %>
+                            <p><%= link_to  "Edit", edit_project_path(project), class:"btn btn-outline-primary"%> <%= link_to  "Delete", project_path(project), method: "delete", class:"btn btn-outline-primary" %></p>
+                        <% end %>
                     </div>
                 </div>
             </div>
         <% end %>
     </div>
-    
+<% if (@director || @casting) %>
     <h4 class= "container text-center">Add a new Project:</h4>
     <%= render  "form" %>
+<% end %>
 
-<% else %>
+<%# <% else %> %>
 
     <div class="d-flex justify-content-center">
         <%=form_with url: "/search", method: :get, local: true do |f|%>
@@ -55,4 +57,4 @@
         <% end %>
     </div>
 
-<% end %>
+<%# <% end %> %>
