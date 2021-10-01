@@ -4,17 +4,17 @@
 
 .audition-card:hover {
     cursor: pointer;
-    background-color: rgb(171, 247, 250);
+    border: solid 1px rgb(100, 100, 100);
 }
 
 .TV {
-    background-color: #4D6CFA;
+    background-color: #4D6CFA !important;
 }
 
 .Film {
-    background-color: #F038FF;
+    background-color: #F038FF !important;
 }
 
 .Theater {
-    background-color: #70E4EF;
+    background-color: #70E4EF !important;
 }

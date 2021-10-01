@@ -1,55 +1,18 @@
-<div class="card">
-    <div class="card-header">
+<div audition_id=<%=@audition.id%> class="card audition-card">
+    <div class="card-header <%=@audition.project.medium%>">
         <%=  @audition.project.title %>
     </div>
 
     <div class="card-body">
+        
         <% if current_user_model != Actor %>
             <h5 class="card-title"><%= link_to @audition.actor.name, actor_path(@audition.actor), class:"text-decoration-none" %></h5>
         <% end %>
         <ul class="list-group list-group-flush">
             <% if @audition.location %>
-                <li class="list-group-item"><%=@audition.location%></li>
+                <li class="list-group-item"><strong>Location:</strong>  <%=@audition.location%></li>
             <% end %>
-            <li class="list-group-item"><%= @audition.time.strftime("%l:%M%P %A, %B %e") %></li>
+            <li class="list-group-item"><strong>Time:</strong>  <%= @audition.time.strftime("%l:%M%P %A, %B %e") %></li>
         </ul>
     </div>
 </div>
-
-
-
-
-<div class="text-center">
-    <h2> <%=  @audition.project.title %> </h2>
-</div>
-
-<table class="table d-flex justify-content-center">
-    <tbody>
-
-        <% if current_user_model != Actor %>
-            <tr>
-                <th scope="row">Actor:</th>
-                <td> <%= link_to @audition.actor.name, actor_path(@audition.actor), class:"text-decoration-none" %></td>
-            </tr>
-        <% else %>
-            <tr class=<%=@audition.project.medium%>>
-                <th scope="row">Type:</th>
-                <td> <%=@audition.project.medium %></td>
-            </tr>
-
-        <% end %>
-
-        <% if @audition.location %>
-            <tr>
-                <th scope="row">Location:</th>
-                <td> <%= @audition.location %></td>
-            </tr>
-        <% end %>
-
-        <tr>
-            <th scope="row">Time:</th>
-            <td> <%= @audition.time.strftime("%l:%M%P %A, %B %e") %></td>
-        </tr>
-
-    </tbody>
-</table>
