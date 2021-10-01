@@ -7,10 +7,10 @@
     <div class=" row d-flex justify-content-center">
         <%@projects.each do |project|%>
             <div class="col-4">
-            <div class="card">
-                <div class="card-header <%=project.medium%> text-center">
-                    <h4><%= project.title%> (<%=project.medium %>)</h4>
-                </div>
+                <div class="card">
+                    <div class="card-header <%=project.medium%> text-center">
+                        <h4><%= project.title%> (<%=project.medium %>)</h4>
+                    </div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush text-center">
                             <% if @casting %>
@@ -19,17 +19,15 @@
                             <% if @director %>
                                 <li class=list-group-item><strong>Casting Director: </strong><%=project.casting.name%></li>
                             <% end %>
-                            <% if @project.seeking %>
-                                <li class="list-group-item"> *Currently Casting</li>
-                            <% end %>
+                            <li class="list-group-item"><%= project.seeking ? "* Currently Casting" : "Not Currently Casting" %></li>
                         </ul>
                         <p><%= link_to  "Edit", edit_project_path(project), class:"btn btn-outline-primary"%> <%= link_to  "Delete", project_path(project), method: "delete", class:"btn btn-outline-primary" %></p>
-
                     </div>
                 </div>
             </div>
         <% end %>
     </div>
+    
     <h4 class= "container text-center">Add a new Project:</h4>
     <%= render  "form" %>
 
