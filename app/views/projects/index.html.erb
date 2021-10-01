@@ -1,40 +1,37 @@
-
 <% if @projects.length != 0 %>
-    <h1 class="text-center"><%= @director || @casting ? "Your Projects" : "Projects Currently Casting"%></h1>
+    <h2 class="text-center"><%= @director || @casting ? "Your Projects" : "Projects Currently Casting"%></h2>
 <% end %>
-
-
-    
-    <div class="row d-flex justify-content-center">
-        <%@projects.each do |project|%>
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-header <%=project.medium%> text-center">
-                        <h4><%= project.title%> (<%=project.medium %>)</h4>
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush text-center">
-                            <li class=list-group-item><strong>Director: </strong><%=project.director.name%></li>
-            
-                            <li class=list-group-item><strong>Casting Director: </strong><%=project.casting.name%></li>
-                            
-                            <li class="list-group-item"><%= project.seeking ? "* Currently Casting" : "Not Currently Casting" %></li>
-                        </ul>
-                        <% if project_creative?(project) %>
-                            <p><%= link_to  "Edit", edit_project_path(project), class:"btn btn-outline-primary"%> <%= link_to  "Delete", project_path(project), method: "delete", class:"btn btn-outline-primary" %></p>
-                        <% end %>
-                    </div>
+  
+<div class="row d-flex justify-content-center">
+    <%@projects.each do |project|%>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header <%=project.medium%> text-center">
+                    <h4><%= project.title%> (<%=project.medium %>)</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush text-center">
+                        <li class=list-group-item><strong>Director: </strong><%=project.director.name%></li>
+        
+                        <li class=list-group-item><strong>Casting Director: </strong><%=project.casting.name%></li>
+                        
+                        <li class="list-group-item"><%= project.seeking ? "* Currently Casting" : "Not Currently Casting" %></li>
+                    </ul>
+                    <% if project_creative?(project) %>
+                        <p><%= link_to  "Edit", edit_project_path(project), class:"btn btn-outline-primary"%> <%= link_to  "Delete", project_path(project), method: "delete", class:"btn btn-outline-primary" %></p>
+                    <% end %>
                 </div>
             </div>
-        <% end %>
-    </div>
+        </div>
+    <% end %>
+</div>
+
 <% if (@director || @casting) %>
     <h4 class= "container text-center">Add a new Project:</h4>
     <%= render  "form" %>
 <% end %>
 
-<%# <% else %> %>
-
+<% if !(@director || @casting) %>
     <div class="d-flex justify-content-center">
         <%=form_with url: "/search", method: :get, local: true do |f|%>
             <%= f.label :director_name, "Search for Projects by Director:" %>
@@ -42,19 +39,6 @@
             <%= f.submit "Search" %>
         <% end %>
     </div>
+<% end %>
 
-    <h2 class= "container text-center">Projects Currently Casting</h2>
-    <div class="row d-flex justify-content-center">
-        <%@projects.each do |project|%>
-            <div class="col-3 border rounded m-1 <%=project.medium%>">
-                <h3><%=project.title%>(<%=project.medium %>)</h3>
-                <p>Director: <%=project.director.name %></p>
-                <p>Casting Director: <%=project.casting.name%></p>
-                <% if project_creative?(project) %>
-                    <%= link_to  "Edit", edit_project_path(project), class:"btn btn-light"%> <%= link_to  "Delete", project_path(project), method: "delete", class:"btn btn-light" %></p>
-                <% end %>
-            </div>
-        <% end %>
-    </div>
-
-<%# <% end %> %>
+ 
