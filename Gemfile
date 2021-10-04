@@ -52,3 +52,4 @@ gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
 gem 'bootstrap', '~> 5.0.0.alpha3'
 gem "chartkick"
+gem 'discard', '~> 1.2'

@@ -1,4 +1,7 @@
 class Project < ApplicationRecord
+    
+    include Discard::Model
+
     belongs_to :casting
     belongs_to :director
     has_many :auditions, dependent: :destroy

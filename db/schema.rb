@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_08_025456) do
+ActiveRecord::Schema.define(version: 2021_10_04_182513) do
 
   create_table "actors", force: :cascade do |t|
     t.string "name"
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(version: 2020_12_08_025456) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "seeking", default: true
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_projects_on_discarded_at"
   end
 
 end
