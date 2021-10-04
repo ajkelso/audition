@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
     end
 
     def destroy
-        @project.delete 
+        @project.discard
         redirect_to current_user_projects_path
     end
     

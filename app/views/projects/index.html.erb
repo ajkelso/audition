@@ -21,6 +21,11 @@
                         <p><%= link_to  "Edit", edit_project_path(project), class:"btn btn-outline-primary"%> <%= link_to  "Delete", project_path(project), method: "delete", class:"btn btn-outline-primary" %></p>
                     <% end %>
                 </div>
+                <% if project.discarded? %>
+                    <div class="card-footer text-muted">
+                        This project is no longer running or in development
+                    </div>  
+                <% end %>
             </div>
         </div>
     <% end %>

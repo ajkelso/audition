@@ -72,7 +72,6 @@ class AuditionsController < ApplicationController
         if params[:actor_id]
             @user = Actor.find_by(id: params[:actor_id])
             if allowed?
-                byebug
                 @auditions = @user.auditions
             end
         elsif params[:director_id]
