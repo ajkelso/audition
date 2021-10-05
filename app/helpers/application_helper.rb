@@ -1,7 +1,4 @@
 module ApplicationHelper
-    def creative?
-        (current_user.class == Casting) || (current_user.class == Director)
-    end
 
     def my_auditions_link
         if current_user_model == Actor 

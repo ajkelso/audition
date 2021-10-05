@@ -11,6 +11,11 @@ class ActorsController < ApplicationController
             flash[:error] = "Actor not found."
             redirect_to actors_path 
         end
+        if creative?
+            @audition = current_user.auditions.find_by(actor_id: @actor.id)
+        end
+        byebug
+
     end
     
     def profile 

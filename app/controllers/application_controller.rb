@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
     helper_method :current_user
     helper_method :owner?
     helper_method :current_user_model
+    helper_method :creative?
+
 
     def verified_user
         unless user_is_authenticated
@@ -58,6 +60,10 @@ class ApplicationController < ActionController::Base
 
     def profile
         "/#{current_user_model.to_s.downcase}s/#{current_user.id}/profile"
+    end
+
+    def creative?
+        (current_user.class == Casting) || (current_user.class == Director)
     end
     
 end
