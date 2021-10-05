@@ -14,7 +14,6 @@ class ActorsController < ApplicationController
         if creative?
             @audition = current_user.auditions.find_by(actor_id: @actor.id)
         end
-
     end
     
     def profile 
