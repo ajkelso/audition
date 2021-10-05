@@ -6,3 +6,7 @@
     <%= link_to  "Edit Info", edit_director_path(@director), class:"text-decoration-none" %>
     </div>
 <% end %>
+
+<% if @audition %>
+    <%= render  "auditions/button_link" %>
+<% end %>
