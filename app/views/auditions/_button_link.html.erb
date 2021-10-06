@@ -1,3 +1,5 @@
-<div class="text-center">
-        <%= link_to "View Tracked Audition", audition_path(@audition), class:"btn btn-outline-primary btn-sm" %>
-</div>
+<% @auditions.each do |audition| %>
+        <div class="text-center">
+                <%= link_to "View Tracked Audition", audition_path(audition), class:"btn btn-outline-primary btn-sm" %>
+        </div>
+<% end %>

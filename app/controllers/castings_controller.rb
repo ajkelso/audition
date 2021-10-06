@@ -12,10 +12,10 @@ class CastingsController < ApplicationController
             redirect_to castings_path 
         end
         # find way to gather auditions if they exist
-        # if !creative?
-        #     byebug
-        #     @audition = current_user.auditions.find_by(casting_id: @casting.id)
-        # end
+        if !creative?
+            @auditions = current_user.auditions.select { |a| a.project.casting == @casting }
+        end
+        byebug
         @projects = @casting.projects unless @casting.projects.empty?
     end
     
