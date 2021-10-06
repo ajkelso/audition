@@ -11,6 +11,11 @@ class DirectorsController < ApplicationController
             flash[:error] = "Director not found."
             redirect_to directors_path 
         end
+
+        if !creative?
+            @auditions = current_user.auditions.select { |a| a.project.director == @director }
+        end
+
         @projects = @director.projects unless @director.projects.empty?
     end
     

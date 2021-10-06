@@ -11,10 +11,11 @@ class CastingsController < ApplicationController
             flash[:error] = "Casting Director not found."
             redirect_to castings_path 
         end
+        
         if !creative?
             @auditions = current_user.auditions.select { |a| a.project.casting == @casting }
         end
-        byebug
+        
         @projects = @casting.projects unless @casting.projects.empty?
     end
     
