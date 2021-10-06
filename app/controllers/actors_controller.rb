@@ -12,7 +12,7 @@ class ActorsController < ApplicationController
             redirect_to actors_path 
         end
         if creative?
-            @audition = current_user.auditions.find_by(actor_id: @actor.id)
+            @auditions = current_user.auditions.select { |a| a.actor == @actor }
         end
     end
     

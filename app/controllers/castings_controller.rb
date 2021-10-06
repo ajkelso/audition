@@ -11,7 +11,6 @@ class CastingsController < ApplicationController
             flash[:error] = "Casting Director not found."
             redirect_to castings_path 
         end
-        # find way to gather auditions if they exist
         if !creative?
             @auditions = current_user.auditions.select { |a| a.project.casting == @casting }
         end
